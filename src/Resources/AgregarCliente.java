@@ -1,42 +1,17 @@
 package Resources;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
 import java.io.*;
-import javax.swing.*;
 
-public class AgregarCliente extends JFrame implements ActionListener{
-	
-	public static void main(String[] args) {
-		AgregarCliente h = new AgregarCliente();
-		h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		h.setVisible(true);
-	}
+public class AgregarCliente{
 
-	private JLabel jlMensaje;
-	private JTextField jtfNombre, jtfApellido, jtfNumCuenta, jtfSaldoInicial, jtfContrasena;
-	private JButton jbAdd, jbCancelar, jbCerrar;
-	private JPanel jpBotones, jpBtMsj;	
-	private String nombre, apellido, usuario, contrasena, tipoCuenta;
-	private JComboBox<String> jcbTipoCuenta, jcbUsuario;
-	private double saldoInicial;
-	private String numCuenta;
 	private ArrayList <ClientesDB> lista = new ArrayList<ClientesDB>();
-	private boolean permitidoContrasena, permitidoNomApell;
-	
-	public AgregarCliente() {
-		setTitle("Agregar Cliente");
-		setResizable(false);
+
+	public AgregarCliente(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta) {
+		agregandoClientes(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta);
 	}
 
-
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		if(permitidoContrasena & permitidoNomApell){
-			if(jbAdd == e.getSource()){
-				
+				/*
 				//------------------Datos int y double---------------------
 				try{
 					if((jtfSaldoInicial.getText() == null || jtfSaldoInicial.getText().equals(""))) 
@@ -49,42 +24,33 @@ public class AgregarCliente extends JFrame implements ActionListener{
 				//---------------------------------------------------------		
 				
 				agregandoClientes(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta);
-			}
-			}
-		
-	}	
+			}*/
+
 	
-	@SuppressWarnings("unchecked")
-	private void agregandoClientes(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial,
-			String contrasena, String tipoCuenta){
+
+	private void agregandoClientes(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta){
 		try {
-			ObjectInputStream leer_fichero = new ObjectInputStream(new FileInputStream("clientesBaseDatos.txt"));
-			
-			ArrayList<ClientesDB[]> personal_Recuperado = (ArrayList<ClientesDB[]>) leer_fichero.readObject();
-			
-			leer_fichero.close();
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("data.txt"));
+			ArrayList<ClientesDB[]> personal_Recuperado = (ArrayList<ClientesDB[]>) input.readObject();
+			input.close();
 			
 			ClientesDB []listaNueva = new ClientesDB[personal_Recuperado.size()];
-			
 			personal_Recuperado.toArray(listaNueva);
 			
-			for(ClientesDB e: listaNueva){
+			for(ClientesDB e: listaNueva)
 				lista.add(e);
-			}
+			
 			
 		}catch (Exception e1) { }
 		
-		lista.add(new ClientesDB(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta));
+	lista.add(new ClientesDB(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta));
 		
 		try{	
-			ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("clientesBaseDatos.txt"));
-			
-			escribiendo_fichero.writeObject(lista);
-			
-			escribiendo_fichero.close();
-			
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.txt"));
+			out.writeObject(lista);
+			out.close();
 		}catch(Exception e){ }	
 		
-	}	
+	}		//---=== FIN METODO AGREGAR CLIENTES A LA LISTA DEL ARCHIVO	
 
-}
+}		//---=== END CLASS
