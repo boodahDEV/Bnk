@@ -103,6 +103,15 @@ public class Bnk_GUI extends JFrame{
 				title.setBounds(60, 23, 119, 21);
 				jpnorte.add(title);
 				
+				JButton button = new JButton(" ");
+				button.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/user_null.png")));
+				button.setIconTextGap(-10);
+				button.setFocusable(false);
+				button.setContentAreaFilled(false);
+				button.setBorderPainted(false);
+				button.setBounds(1051, 9, 35, 35);
+				jpnorte.add(button);
+				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
 		dashboard.setBounds(10, 70, 50, 585);

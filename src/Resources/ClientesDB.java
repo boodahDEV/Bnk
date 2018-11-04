@@ -1,17 +1,11 @@
 package Resources;
 
 public class ClientesDB{
+	
 	private String nombre, apellido, usuario, contrasena, tipoCuenta;
 	private double saldoInicial;
 	private String numCuenta;
 	
-	public ClientesDB(String usuario, String numCuenta,
-			String contrasena, String tipoCuenta) {
-		
-		this("anonimo ","", usuario, "",0.0,
-			contrasena,tipoCuenta);
-		
-	}
 
 	public ClientesDB(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial,
 			String contrasena, String tipoCuenta) {
@@ -52,4 +46,4 @@ public class ClientesDB{
 		return tipoCuenta;
 	}
 
-}		//---=== END CLASS
+}	//---=== END CLASS
