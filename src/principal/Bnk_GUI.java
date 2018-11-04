@@ -5,14 +5,17 @@ import javax.swing.*;
 import javax.swing.border.*;
 import Animacion.Animacion;
 import java.awt.event.*;
+import java.io.*;
 
 public class Bnk_GUI extends JFrame{
 
 	private JPanel contentPane,jpnorte,dashboard;
 	protected JButton search,menu;
-	protected JLabel up_dashboard;
+	protected JLabel up_dashboard,title;
 	protected boolean bandera = true;
 	protected Dashboar_listener dl =new Dashboar_listener();
+	protected int x,y;
+	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
 			frame.setVisible(true);
@@ -27,6 +30,7 @@ public class Bnk_GUI extends JFrame{
 	 */
 	public Bnk_GUI() {
 		setUndecorated(true);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1115, 665);
 		contentPane = new JPanel();
@@ -36,6 +40,17 @@ public class Bnk_GUI extends JFrame{
 		contentPane.setLayout(null);
 		
 		jpnorte = new JPanel();
+		jpnorte.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent a) {
+				x = a.getX(); y = a.getY();
+			}
+		});
+		jpnorte.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent a) {
+				int xx=a.getXOnScreen(), yy=a.getYOnScreen(); 
+				setLocation(xx-x,yy-y);
+			}
+		});
 		jpnorte.setBounds(2, 2, 1110, 60);
 		jpnorte.setBackground(new Color(16,32,39));
 		contentPane.add(jpnorte);
@@ -81,6 +96,13 @@ public class Bnk_GUI extends JFrame{
 				menu.setBounds(10, 15, 40, 40);
 				jpnorte.add(menu);
 				
+				title = new JLabel("");
+				controlDeVersion("version.txt");	//--=== METODO QUE BUSCA EL ARCHIVO VERSIONES.TXT PARA DETERMINAR PORQUE VERSION VA LA APLICACION!
+				title.setForeground(new Color(55,71,79));
+				title.setFont(new Font("Century Gothic", Font.BOLD, 15));
+				title.setBounds(60, 23, 119, 21);
+				jpnorte.add(title);
+				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
 		dashboard.setBounds(10, 70, 50, 585);
@@ -97,6 +119,18 @@ public class Bnk_GUI extends JFrame{
 	}		//---=== END CONSTRUCTOR FRAME
 	
 	
+	void controlDeVersion(String archivo){
+		try {
+		      File ruta = new File (archivo);
+		      FileReader f = new FileReader(ruta);
+		      BufferedReader b = new BufferedReader(f);
+		      String lines;
+		      while((lines=b.readLine())!=null){
+		             title.setText(lines+"\n");
+		        }
+		      b.close();
+		}catch(Exception e) {System.out.println("ERROR File! \n"+e);}
+	}		//---=== METODO EN EL CUAL CONTROLA LAS VERSIONES DEL PROGRAMA
 	
 	
 /******************************************************************************************************************/	
@@ -111,7 +145,6 @@ public class Bnk_GUI extends JFrame{
 			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		}		//---=== EVENTO AL MOVER POR ENCIMA DEL DASHBOARD
 	}		//---=== END CLASS
-/******************************************************************************************************************/
 }		//---=== END CLASS
 
 
