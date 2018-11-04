@@ -2,12 +2,17 @@ package principal;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
+import Animacion.Animacion;
+import java.awt.event.*;
 
-public class Bnk_GUI extends JFrame {
+public class Bnk_GUI extends JFrame{
 
-	private JPanel contentPane;
-
+	private JPanel contentPane,jpnorte,dashboard;
+	protected JButton search,menu;
+	protected JLabel up_dashboard;
+	protected boolean bandera = true;
+	protected Dashboar_listener dl =new Dashboar_listener();
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
 			frame.setVisible(true);
@@ -21,12 +26,92 @@ public class Bnk_GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public Bnk_GUI() {
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1115, 665);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBackground(new Color(16,32,39));
+		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, new Color(30,136,229)));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		jpnorte = new JPanel();
+		jpnorte.setBounds(2, 2, 1110, 60);
+		jpnorte.setBackground(new Color(16,32,39));
+		contentPane.add(jpnorte);
+		jpnorte.setLayout(null);
+		
+				search = new JButton(" ");
+				search.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				search.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/search.png")));
+				search.setIconTextGap(-10);
+				search.setFocusable(false);
+				search.setContentAreaFilled(false);
+				search.setBorderPainted(false);
+				search.setBounds(1011, 11, 30, 30);
+				jpnorte.add(search);
+				
+				menu = new JButton(" ");
+				menu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				menu.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent a) {
+						if(bandera == true) {
+							menu.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/menu_open.png")));
+							dashboard.setBounds(10, 70, 190, 585);			//---=== HACE LA FUNCION DEL LISTENER
+							dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+							dashboard.removeMouseListener(dl);				//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD
+							dashboard.removeMouseMotionListener(dl);		//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD
+							bandera=false;
+						}else {
+							menu.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/menu_close.png")));
+							dashboard.setBounds(10, 70, 50, 585);
+							dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+							dashboard.addMouseListener(dl);					//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
+							dashboard.addMouseMotionListener(dl);			//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
+							bandera=true;
+						}
+					}
+				});
+				menu.setToolTipText("click to open the dashboard");
+				menu.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/menu_close.png")));
+				menu.setIconTextGap(-10);
+				menu.setFocusable(false);
+				menu.setContentAreaFilled(false);
+				menu.setBorderPainted(false);
+				menu.setBounds(10, 15, 40, 40);
+				jpnorte.add(menu);
+				
+		dashboard = new JPanel();
+		dashboard.setBackground(new Color(30,136,229));
+		dashboard.setBounds(10, 70, 50, 585);
+		dashboard.addMouseListener(dl);				//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
+		dashboard.addMouseMotionListener(dl);		//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
+		contentPane.add(dashboard);
+		dashboard.setLayout(null);
+		
+		up_dashboard = new JLabel(" ");
+		up_dashboard.setFocusable(false);
+		up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
+		up_dashboard.setBounds(12, 62, 25, 14);
+		contentPane.add(up_dashboard);
 	}		//---=== END CONSTRUCTOR FRAME
-
+	
+	
+	
+	
+/******************************************************************************************************************/	
+	class Dashboar_listener extends MouseAdapter implements MouseMotionListener {
+		public void mouseExited(MouseEvent a) {
+			dashboard.setBounds(10, 70, 50, 585);
+			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}		//---=== EVENTO AL MOVER EL DASHBOARD A SU ESATDO NORMAL
+		
+		public void mouseMoved(MouseEvent a) {
+			dashboard.setBounds(10, 70, 190, 585);
+			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		}		//---=== EVENTO AL MOVER POR ENCIMA DEL DASHBOARD
+	}		//---=== END CLASS
+/******************************************************************************************************************/
 }		//---=== END CLASS
+
+
