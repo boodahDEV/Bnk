@@ -15,10 +15,11 @@ public class Bnk_GUI extends JFrame{
 	protected JLabel up_dashboard,title;
 	protected boolean bandera = true;
 	protected Dashboar_listener dl =new Dashboar_listener();
+	protected MaterialButton exit;
 	protected int x,y;
 	private JPanel jp_registro;
 	private JLabel up_registro;
-	private JButton button;
+	private JButton exit_min;
 	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
@@ -147,34 +148,47 @@ public class Bnk_GUI extends JFrame{
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
 		
-		MaterialButton exit = new MaterialButton();
-		exit.setHorizontalAlignment(SwingConstants.LEFT);
-		exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		exit.setText("  Exit");
-		exit.setFocusable(false);
-		exit.setColorPressed(new Color(0,109,179));
-		exit.setColorNormal(new Color(30,136,229));
-		exit.setColorHover(new Color(3,155,229));
-		exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		exit.setForeground(new Color(255,255,255));
-		exit.setBounds(50, 550, 140, 30);
-		dashboard.add(exit);
-		
-		button = new JButton("");
-		button.setIconTextGap(-20);
-		button.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit.png")));
-		button.setToolTipText("click to open the dashboard");
-		button.setFocusable(false);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBounds(5, 545, 40, 40);
-		dashboard.add(button);
-		
-		up_dashboard = new JLabel(" ");
-		up_dashboard.setFocusable(false);
-		up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
-		up_dashboard.setBounds(12, 62, 25, 14);
-		contentPane.add(up_dashboard);
+				exit = new MaterialButton();
+				exit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						System.exit(0);
+					}
+				});
+				exit.setHorizontalAlignment(SwingConstants.LEFT);
+				exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				exit.setText("  Exit");
+				exit.setFocusable(false);
+				exit.setColorPressed(new Color(0,109,179));
+				exit.setColorNormal(new Color(30,136,229));
+				exit.setColorHover(new Color(3,155,229));
+				exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
+				exit.setForeground(new Color(255,255,255));
+				exit.setBounds(50, 550, 140, 30);
+				dashboard.add(exit);
+				
+				exit_min = new JButton("");
+				exit_min.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						System.exit(0);
+					}
+				});
+				exit_min.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				exit_min.setRolloverSelectedIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit2.png")));
+				exit_min.setRolloverIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit2.png")));
+				exit_min.setIconTextGap(-20);
+				exit_min.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit.png")));
+				exit_min.setToolTipText("click to open the dashboard");
+				exit_min.setFocusable(false);
+				exit_min.setContentAreaFilled(false);
+				exit_min.setBorderPainted(false);
+				exit_min.setBounds(5, 545, 40, 40);
+				dashboard.add(exit_min);
+				
+				up_dashboard = new JLabel(" ");
+				up_dashboard.setFocusable(false);
+				up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
+				up_dashboard.setBounds(12, 62, 25, 14);
+				contentPane.add(up_dashboard);
 		
 		up_registro = new JLabel(" ");
 		up_registro.setBounds(1062, 62, 25, 14);		//---=== altura normal es de 14 y la posicion era de 61
