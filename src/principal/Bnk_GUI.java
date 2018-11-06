@@ -15,6 +15,8 @@ public class Bnk_GUI extends JFrame{
 	protected boolean bandera = true;
 	protected Dashboar_listener dl =new Dashboar_listener();
 	protected int x,y;
+	private JPanel jp_registro;
+	private JLabel up_registro;
 	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
@@ -57,8 +59,9 @@ public class Bnk_GUI extends JFrame{
 		jpnorte.setLayout(null);
 				
 				jp_notify = new JPanel();
-				jp_notify.setBounds(300, -60, 500, 50);
+				jp_notify.setBounds(300, -60, 500, 50);		//---=== POSICION DEL PANEL DE NOTIFICACIONES normalmente debe estar en la altura (-60), al editar se pondra en 10.
 				jpnorte.add(jp_notify);
+				jp_notify.setLayout(null);
 		
 				search = new JButton(" ");
 				search.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -67,7 +70,7 @@ public class Bnk_GUI extends JFrame{
 				search.setFocusable(false);
 				search.setContentAreaFilled(false);
 				search.setBorderPainted(false);
-				search.setBounds(1011, 11, 30, 30);
+				search.setBounds(1011, 15, 30, 30);
 				jpnorte.add(search);
 				
 				menu = new JButton(" ");
@@ -111,8 +114,19 @@ public class Bnk_GUI extends JFrame{
 				user.setToolTipText("User");
 				user.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent a) {
-						Animacion.bajar(-60, 10, 6, 2, jp_notify);
-					}
+						//Animacion.bajar(-60, 10, 6, 2, jp_notify);		//---=== MUEVE EL PANEL DE NOTIFICACIONES HACIA ABAJO! ESTO TOMARLO EN CUANTA EN EXCEPCIONES
+						if(bandera==true){
+							Animacion.bajar(2, 70, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ABAJO
+							jp_registro.setBounds(945, 70, 145, 110);		//---=== SETEA UNA NUEVA ALTURA AL REGISTRO
+							up_registro.setVisible(true);
+							bandera=false;
+						}else {
+							Animacion.subir(70, 2, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ARRIBA
+							jp_registro.setBounds(945, 2, 145, 60);			//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
+							up_registro.setVisible(false);
+							bandera=true;
+						}
+					}		//---=== END LISTENER
 				});
 				user.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				user.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/user_null.png")));
@@ -120,14 +134,14 @@ public class Bnk_GUI extends JFrame{
 				user.setFocusable(false);
 				user.setContentAreaFilled(false);
 				user.setBorderPainted(false);
-				user.setBounds(1055, 9, 35, 35);
+				user.setBounds(1055, 12, 35, 35);
 				jpnorte.add(user);
 				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
 		dashboard.setBounds(10, 70, 50, 585);
-		dashboard.addMouseListener(dl);				//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
-		dashboard.addMouseMotionListener(dl);		//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
+		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
+		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
 		
@@ -136,6 +150,19 @@ public class Bnk_GUI extends JFrame{
 		up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
 		up_dashboard.setBounds(12, 62, 25, 14);
 		contentPane.add(up_dashboard);
+		
+		up_registro = new JLabel(" ");
+		up_registro.setBounds(1062, 62, 25, 14);		//---=== altura normal es de 14 y la posicion era de 61
+		up_registro.setVisible(false);
+		up_registro.setIconTextGap(-10);
+		up_registro.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/down_user.png")));
+		up_registro.setFocusable(false);
+		contentPane.add(up_registro);
+		
+		jp_registro = new JPanel();
+		jp_registro.setBounds(945, 2, 145, 60);			//---=== altura normal es de 110 y la posicion era de 70
+		contentPane.add(jp_registro);
+		jp_registro.setLayout(null);
 	}		//---=== END CONSTRUCTOR FRAME
 	
 	
