@@ -6,6 +6,7 @@ import javax.swing.border.*;
 import Animacion.*;
 import java.awt.event.*;
 import java.io.*;
+import Resources.MaterialButton;
 
 public class Bnk_GUI extends JFrame{
 
@@ -17,6 +18,7 @@ public class Bnk_GUI extends JFrame{
 	protected int x,y;
 	private JPanel jp_registro;
 	private JLabel up_registro;
+	private JButton button;
 	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
@@ -139,11 +141,34 @@ public class Bnk_GUI extends JFrame{
 				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
-		dashboard.setBounds(10, 70, 50, 585);
+		dashboard.setBounds(10, 70, 190, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
 		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
 		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
+		
+		MaterialButton exit = new MaterialButton();
+		exit.setHorizontalAlignment(SwingConstants.LEFT);
+		exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		exit.setText("  Exit");
+		exit.setFocusable(false);
+		exit.setColorPressed(new Color(0,109,179));
+		exit.setColorNormal(new Color(30,136,229));
+		exit.setColorHover(new Color(3,155,229));
+		exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		exit.setForeground(new Color(255,255,255));
+		exit.setBounds(50, 550, 140, 30);
+		dashboard.add(exit);
+		
+		button = new JButton("");
+		button.setIconTextGap(-20);
+		button.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit.png")));
+		button.setToolTipText("click to open the dashboard");
+		button.setFocusable(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBounds(5, 545, 40, 40);
+		dashboard.add(button);
 		
 		up_dashboard = new JLabel(" ");
 		up_dashboard.setFocusable(false);
