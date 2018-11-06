@@ -3,14 +3,14 @@ package principal;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import Animacion.Animacion;
+import Animacion.*;
 import java.awt.event.*;
 import java.io.*;
 
 public class Bnk_GUI extends JFrame{
 
-	private JPanel contentPane,jpnorte,dashboard;
-	protected JButton search,menu;
+	private JPanel contentPane,jpnorte,dashboard,jp_notify;
+	protected JButton search,menu,user;
 	protected JLabel up_dashboard,title;
 	protected boolean bandera = true;
 	protected Dashboar_listener dl =new Dashboar_listener();
@@ -55,6 +55,10 @@ public class Bnk_GUI extends JFrame{
 		jpnorte.setBackground(new Color(16,32,39));
 		contentPane.add(jpnorte);
 		jpnorte.setLayout(null);
+				
+				jp_notify = new JPanel();
+				jp_notify.setBounds(300, -60, 500, 50);
+				jpnorte.add(jp_notify);
 		
 				search = new JButton(" ");
 				search.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -103,14 +107,21 @@ public class Bnk_GUI extends JFrame{
 				title.setBounds(60, 23, 119, 21);
 				jpnorte.add(title);
 				
-				JButton button = new JButton(" ");
-				button.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/user_null.png")));
-				button.setIconTextGap(-10);
-				button.setFocusable(false);
-				button.setContentAreaFilled(false);
-				button.setBorderPainted(false);
-				button.setBounds(1051, 9, 35, 35);
-				jpnorte.add(button);
+				user = new JButton(" ");
+				user.setToolTipText("User");
+				user.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent a) {
+						Animacion.bajar(-60, 10, 6, 2, jp_notify);
+					}
+				});
+				user.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				user.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/user_null.png")));
+				user.setIconTextGap(-10);
+				user.setFocusable(false);
+				user.setContentAreaFilled(false);
+				user.setBorderPainted(false);
+				user.setBounds(1055, 9, 35, 35);
+				jpnorte.add(user);
 				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
