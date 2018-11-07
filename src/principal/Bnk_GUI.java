@@ -71,7 +71,7 @@ public class Bnk_GUI extends JFrame{
 				search.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/search.png")));
 				search.setIconTextGap(-10);
 				search.setFocusable(false);
-				search.setContentAreaFilled(false);
+				search.setContentAreaFilled(false); 
 				search.setBorderPainted(false);
 				search.setBounds(1011, 15, 30, 30);
 				jpnorte.add(search);
@@ -84,15 +84,15 @@ public class Bnk_GUI extends JFrame{
 							menu.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/menu_open.png")));
 							dashboard.setBounds(10, 70, 190, 585);			//---=== HACE LA FUNCION DEL LISTENER
 							dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-							dashboard.removeMouseListener(dl);				//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD
-							dashboard.removeMouseMotionListener(dl);		//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD
+//							dashboard.removeMouseListener(dl);				//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD						LOS ESCUCHAS DEL DASHBOAR SON DESHABILITADOS
+//							dashboard.removeMouseMotionListener(dl);		//---=== DESHABILITA EL ESCUCHA DEL DASHBOARD
 							bandera=false;
 						}else {
 							menu.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/menu_close.png")));
 							dashboard.setBounds(10, 70, 50, 585);
 							dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-							dashboard.addMouseListener(dl);					//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
-							dashboard.addMouseMotionListener(dl);			//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
+//							dashboard.addMouseListener(dl);					//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
+//							dashboard.addMouseMotionListener(dl);			//---=== VUELVE A ESTADO NORMAL LOS ESCUCHAS DE LA CLASE
 							bandera=true;
 						}
 					}
@@ -143,29 +143,29 @@ public class Bnk_GUI extends JFrame{
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
 		dashboard.setBounds(10, 70, 190, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
-		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
-		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
+//		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
+//		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
 		
-				exit = new MaterialButton();
-				exit.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						System.exit(0);
-					}
-				});
-				exit.setHorizontalAlignment(SwingConstants.LEFT);
-				exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				exit.setText("  Exit");
-				exit.setFocusable(false);
-				exit.setColorPressed(new Color(0,109,179));
-				exit.setColorNormal(new Color(30,136,229));
-				exit.setColorHover(new Color(3,155,229));
-				exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
-				exit.setForeground(new Color(255,255,255));
-				exit.setBounds(50, 550, 140, 30);
-				dashboard.add(exit);
-				
+//				exit = new MaterialButton();
+//				exit.addActionListener(new ActionListener() {
+//					public void actionPerformed(ActionEvent arg0) {
+//						System.exit(0);
+//					}
+//				});
+//				exit.setHorizontalAlignment(SwingConstants.LEFT);
+//				exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));				//---=== EL BOTON DEL EXIT EN FORMA DE TEXTO A SIDO DESHABILITADO TEMPORALMENTE
+//				exit.setText("  Exit");
+//				exit.setFocusable(false);
+//				exit.setColorPressed(new Color(0,109,179));
+//				exit.setColorNormal(new Color(30,136,229));
+//				exit.setColorHover(new Color(3,155,229));
+//				exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
+//				exit.setForeground(new Color(255,255,255));
+//				exit.setBounds(50, 550, 140, 30);
+//				dashboard.add(exit);
+//				
 				exit_min = new JButton("");
 				exit_min.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
