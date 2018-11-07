@@ -20,6 +20,7 @@ public class Bnk_GUI extends JFrame{
 	private JPanel jp_registro;
 	private JLabel up_registro;
 	private JButton exit_min;
+	private JPanel principal;
 	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
@@ -45,17 +46,18 @@ public class Bnk_GUI extends JFrame{
 		contentPane.setLayout(null);
 		
 		jpnorte = new JPanel();
-		jpnorte.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent a) {
-				x = a.getX(); y = a.getY();
-			}
-		});
-		jpnorte.addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged(MouseEvent a) {
-				int xx=a.getXOnScreen(), yy=a.getYOnScreen(); 
-				setLocation(xx-x,yy-y);
-			}
-		});
+				jpnorte.addMouseListener(new MouseAdapter() {
+					public void mousePressed(MouseEvent a) {
+						x = a.getX(); y = a.getY();
+					}
+				});
+				jpnorte.addMouseMotionListener(new MouseMotionAdapter() {
+					public void mouseDragged(MouseEvent a) {
+						int xx=a.getXOnScreen(), yy=a.getYOnScreen(); 
+						setLocation(xx-x,yy-y);
+					}
+				});
+		
 		jpnorte.setBounds(2, 2, 1110, 60);
 		jpnorte.setBackground(new Color(16,32,39));
 		contentPane.add(jpnorte);
@@ -205,19 +207,19 @@ public class Bnk_GUI extends JFrame{
 		jp_registro.setLayout(null);
 		
 				jl_login = new JLabel("   Log in");
-				jl_login.addMouseListener(new MouseAdapter() {
-					public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
-						jl_login.setForeground(new Color(0,0,0));
-					}
-					public void mousePressed(MouseEvent a) {
-																				//---=== LO QUE QUIERO QUE HAGA! 
-					}
-				});
-				jl_login.addMouseMotionListener(new MouseMotionAdapter() {		//---=== HACE LA FUNCION DE UN HOBER SOBRE EL LABEL
-					public void mouseMoved(MouseEvent a) {
-						jl_login.setForeground(new Color(55,71,79));
-					}
-				});
+						jl_login.addMouseListener(new MouseAdapter() {
+							public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
+								jl_login.setForeground(new Color(0,0,0));
+							}
+							public void mousePressed(MouseEvent a) {
+								new paneles.Cambia_paneles(principal, new paneles.Panel_login());														//---=== LO QUE QUIERO QUE HAGA! 
+							}
+						});
+						jl_login.addMouseMotionListener(new MouseMotionAdapter() {		//---=== HACE LA FUNCION DE UN HOBER SOBRE EL LABEL
+							public void mouseMoved(MouseEvent a) {
+								jl_login.setForeground(new Color(55,71,79));
+							}
+						});
 				jl_login.setFont(new Font("Century Gothic", Font.BOLD, 11));
 				jl_login.setFocusable(false);
 				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -228,6 +230,11 @@ public class Bnk_GUI extends JFrame{
 				separator.setForeground(new Color(169, 169, 169));
 				separator.setBounds(0, 80, 145, 2);
 				jp_registro.add(separator);
+				
+				principal = new JPanel();
+				principal.setBounds(70, 70, 1035, 585);
+				principal.setBackground(new Color(16,32,39));
+				contentPane.add(principal);
 	}		//---=== END CONSTRUCTOR FRAME
 	
 	
