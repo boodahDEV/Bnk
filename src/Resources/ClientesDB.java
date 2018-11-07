@@ -14,7 +14,7 @@ public class ClientesDB{
 		this.usuario = usuario;
 		this.numCuenta = numCuenta;
 		this.saldoInicial = saldoInicial;
-		this.contrasena = contrasena;
+		this.contrasena = contrasena; 
 		this.tipoCuenta = tipoCuenta;
 	}
 	
