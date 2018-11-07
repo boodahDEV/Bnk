@@ -12,7 +12,7 @@ public class Bnk_GUI extends JFrame{
 
 	private JPanel contentPane,jpnorte,dashboard,jp_notify;
 	protected JButton search,menu,user;
-	protected JLabel up_dashboard,title;
+	protected JLabel up_dashboard,title,jl_login;
 	protected boolean bandera = true;
 	protected Dashboar_listener dl =new Dashboar_listener();
 	protected MaterialButton exit;
@@ -142,7 +142,7 @@ public class Bnk_GUI extends JFrame{
 				
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
-		dashboard.setBounds(10, 70, 190, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
+		dashboard.setBounds(10, 70, 50, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
 //		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
 //		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
 		contentPane.add(dashboard);
@@ -199,9 +199,35 @@ public class Bnk_GUI extends JFrame{
 		contentPane.add(up_registro);
 		
 		jp_registro = new JPanel();
-		jp_registro.setBounds(945, 2, 145, 60);			//---=== altura normal es de 110 y la posicion era de 70
+	//	jp_registro.setBounds(945, 2, 145, 60);			//---=== altura normal es de 110 y la posicion era de 70
+		jp_registro.setBounds(945,70,145,110);
 		contentPane.add(jp_registro);
 		jp_registro.setLayout(null);
+		
+				jl_login = new JLabel("   Log in");
+				jl_login.addMouseListener(new MouseAdapter() {
+					public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
+						jl_login.setForeground(new Color(0,0,0));
+					}
+					public void mousePressed(MouseEvent a) {
+																				//---=== LO QUE QUIERO QUE HAGA! 
+					}
+				});
+				jl_login.addMouseMotionListener(new MouseMotionAdapter() {		//---=== HACE LA FUNCION DE UN HOBER SOBRE EL LABEL
+					public void mouseMoved(MouseEvent a) {
+						jl_login.setForeground(new Color(55,71,79));
+					}
+				});
+				jl_login.setFont(new Font("Century Gothic", Font.BOLD, 11));
+				jl_login.setFocusable(false);
+				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				jl_login.setBounds(5, 85, 135, 20);
+				jp_registro.add(jl_login);
+				
+				JSeparator separator = new JSeparator();
+				separator.setForeground(new Color(169, 169, 169));
+				separator.setBounds(0, 80, 145, 2);
+				jp_registro.add(separator);
 	}		//---=== END CONSTRUCTOR FRAME
 	
 	
