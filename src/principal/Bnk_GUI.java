@@ -124,6 +124,7 @@ public class Bnk_GUI extends JFrame{
 							Animacion.bajar(2, 70, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ABAJO
 							jp_registro.setBounds(945, 70, 145, 110);		//---=== SETEA UNA NUEVA ALTURA AL REGISTRO
 							up_registro.setVisible(true);
+							
 							bandera=false;
 						}else {
 							Animacion.subir(70, 2, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ARRIBA
@@ -145,8 +146,6 @@ public class Bnk_GUI extends JFrame{
 		dashboard = new JPanel();
 		dashboard.setBackground(new Color(30,136,229));
 		dashboard.setBounds(10, 70, 50, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
-//		dashboard.addMouseListener(dl);					//---=== DL ES EL DASHBOARD_LISTENER PARA PARA RE-AJUSTAR EL DASHBOARD A SU ESTADO NORMAL
-//		dashboard.addMouseMotionListener(dl);			//---=== DL ES EL DASHBOARD_LISTENER PARA MOVER POR ENCIMA DEL DASHBOARD
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
 		
@@ -206,13 +205,24 @@ public class Bnk_GUI extends JFrame{
 		contentPane.add(jp_registro);
 		jp_registro.setLayout(null);
 		
+		principal = new JPanel();
+		principal.setLayout(null);
+		principal.setBounds(70, 70, 1035, 585);
+		principal.setBackground(new Color(16,32,39));
+		//new paneles.Cambia_paneles(principal, new paneles.Panel_login());	//---=== LO QUE QUIERO QUE HAGA!
+		contentPane.add(principal);
+				
 				jl_login = new JLabel("   Log in");
 						jl_login.addMouseListener(new MouseAdapter() {
 							public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
 								jl_login.setForeground(new Color(0,0,0));
 							}
-							public void mousePressed(MouseEvent a) {
-								new paneles.Cambia_paneles(principal, new paneles.Panel_login());														//---=== LO QUE QUIERO QUE HAGA! 
+							public void mouseClicked(MouseEvent a) {
+								new paneles.Cambia_paneles(principal, new paneles.Panel_login());	//---=== LO QUE QUIERO QUE HAGA! 
+								Animacion.subir(70, 2, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ARRIBA
+								jp_registro.setBounds(945, 2, 145, 60);			//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
+								up_registro.setVisible(false);
+								bandera=true;
 							}
 						});
 						jl_login.addMouseMotionListener(new MouseMotionAdapter() {		//---=== HACE LA FUNCION DE UN HOBER SOBRE EL LABEL
@@ -231,10 +241,6 @@ public class Bnk_GUI extends JFrame{
 				separator.setBounds(0, 80, 145, 2);
 				jp_registro.add(separator);
 				
-				principal = new JPanel();
-				principal.setBounds(70, 70, 1035, 585);
-				principal.setBackground(new Color(16,32,39));
-				contentPane.add(principal);
 	}		//---=== END CONSTRUCTOR FRAME
 	
 	

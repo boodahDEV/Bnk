@@ -12,9 +12,8 @@ public class Panel_login extends JPanel {
 	 * Create the panel.
 	 */
 	public Panel_login() {
-		this.setBounds(70, 70, 1035, 582);
+		this.setBounds(0, 0, 1035, 582);
 		this.setBackground(new Color(16,32,39));
-		this.setVisible(true);
 		setLayout(null);
 		
 		JLabel login = new JLabel("Log in ");
