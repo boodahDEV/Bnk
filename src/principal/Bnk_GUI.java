@@ -10,17 +10,16 @@ import Resources.MaterialButton;
 
 public class Bnk_GUI extends JFrame{
 
-	public JPanel contentPane,jpnorte,dashboard,jp_notify;
-	protected JButton search,menu,user;
-	protected JLabel up_dashboard,title,jl_login;
-	protected boolean bandera = true;
-	protected MaterialButton exit;
-	protected int x,y;
-	private JPanel jp_registro;
-	private JLabel up_registro;
-	private JButton exit_min;
-	private JPanel principal;
+	public JPanel contentPane,jpnorte,dashboard,jp_notify,principal,jp_registro;
+	public JButton search,menu,user,exit_min;
+	public JLabel up_dashboard,title,jl_login,up_registro,jl_exit,jl_text;
+	public boolean bandera = true;
+	public MaterialButton exit;
+	public int x,y;
 	public Bnk_GUI me;
+	
+	
+	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
 			frame.setVisible(true);
@@ -36,7 +35,8 @@ public class Bnk_GUI extends JFrame{
 	 */
 	public Bnk_GUI() {
 		setUndecorated(true);
-		
+		setLocationRelativeTo(null);
+		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1115, 665);
 		contentPane = new JPanel();
@@ -67,7 +67,13 @@ public class Bnk_GUI extends JFrame{
 				jp_notify.setBounds(300, -60, 500, 50);		//---=== POSICION DEL PANEL DE NOTIFICACIONES normalmente debe estar en la altura (-60), al editar se pondra en 10.
 				jpnorte.add(jp_notify);
 				jp_notify.setLayout(null);
-		
+						jl_text = new JLabel();				//---=== LABEL DE NOTIFICACIONES.
+						jl_text.setBounds(5, 5, 450, 45);
+						jl_text.setFont(new Font("Century Gothic", Font.BOLD, 11));
+						jl_text.setHorizontalAlignment(SwingConstants.CENTER);
+						jl_text.setFocusable(false);
+						jp_notify.add(jl_text);
+						
 				search = new JButton(" ");
 				search.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				search.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/search.png")));
@@ -116,7 +122,7 @@ public class Bnk_GUI extends JFrame{
 				jpnorte.add(title);
 				
 				user = new JButton(" ");
-				user.setToolTipText("User");
+				user.setToolTipText("User");//---=== eliminar en futuras versiones
 				user.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent a) {
 						//Animacion.bajar(-60, 10, 6, 2, jp_notify);		//---=== MUEVE EL PANEL DE NOTIFICACIONES HACIA ABAJO! ESTO TOMARLO EN CUANTA EN EXCEPCIONES
@@ -148,25 +154,7 @@ public class Bnk_GUI extends JFrame{
 		dashboard.setBounds(10, 70, 50, 585);			//---=== EL DASHBOARD TIENE UNA POSICION ORIGINAL PARA EL FUNCIONAMIENTO CORRECTO DE ( 10,70,50,585 ) SE CAMBIA A MODO DISENO.
 		contentPane.add(dashboard);
 		dashboard.setLayout(null);
-		
-//				exit = new MaterialButton();
-//				exit.addActionListener(new ActionListener() {
-//					public void actionPerformed(ActionEvent arg0) {
-//						System.exit(0);
-//					}
-//				});
-//				exit.setHorizontalAlignment(SwingConstants.LEFT);
-//				exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));				//---=== EL BOTON DEL EXIT EN FORMA DE TEXTO A SIDO DESHABILITADO TEMPORALMENTE
-//				exit.setText("  Exit");
-//				exit.setFocusable(false);
-//				exit.setColorPressed(new Color(0,109,179));
-//				exit.setColorNormal(new Color(30,136,229));
-//				exit.setColorHover(new Color(3,155,229));
-//				exit.setFont(new Font("Century Gothic", Font.BOLD, 15));
-//				exit.setForeground(new Color(255,255,255));
-//				exit.setBounds(50, 550, 140, 30);
-//				dashboard.add(exit);
-//				
+
 				exit_min = new JButton("");
 				exit_min.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -185,7 +173,7 @@ public class Bnk_GUI extends JFrame{
 				exit_min.setBounds(5, 545, 40, 40);
 				dashboard.add(exit_min);
 				
-				up_dashboard = new JLabel(" ");
+				up_dashboard = new JLabel(" ");			//--== ESTO ES MAS QUE LA SIMPLE ESQUINA QUE ESTA LOCALIZADA EN EL DASHBOARD EN LA PARTE SUPERIOR
 				up_dashboard.setFocusable(false);
 				up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
 				up_dashboard.setBounds(12, 62, 25, 14);
@@ -205,7 +193,7 @@ public class Bnk_GUI extends JFrame{
 		contentPane.add(jp_registro);
 		jp_registro.setLayout(null);
 		
-		principal = new JPanel();
+		principal = new JPanel();						//---=== ESTE PANEL ES EL PRINCIPAL DONDE IRAN LOS DEMAS GENERADOS POR EL LOGIN
 		principal.setLayout(null);
 		principal.setBounds(70, 70, 1035, 585);
 		principal.setBackground(new Color(16,32,39));
@@ -217,10 +205,10 @@ public class Bnk_GUI extends JFrame{
 								jl_login.setForeground(new Color(0,0,0));
 							}
 							public void mouseClicked(MouseEvent a) {
-								new paneles.Cambia_paneles(principal, new paneles.Panel_login(me));	//---=== LO QUE QUIERO QUE HAGA! 
-								Animacion.subir(70, 2, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ARRIBA
-								jp_registro.setBounds(945, 2, 145, 60);			//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
-								up_registro.setVisible(false);
+								new paneles.Cambia_paneles(principal, new paneles.Panel_login(me)); //---=== EJECUTA EL PANEL_LOGIN 
+								Animacion.subir(70, 2, 4, 2, jp_registro);				//---=== MUEVE EL REGISTRO HACIA ARRIBA
+								jp_registro.setBounds(945, 2, 145, 60);					//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
+								up_registro.setVisible(false);					
 								bandera=true;
 							}
 						});
@@ -229,11 +217,35 @@ public class Bnk_GUI extends JFrame{
 								jl_login.setForeground(new Color(55,71,79));
 							}
 						});
+				
 				jl_login.setFont(new Font("Century Gothic", Font.BOLD, 11));
 				jl_login.setFocusable(false);
 				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				jl_login.setBounds(5, 85, 135, 20);
+				jl_login.setBounds(5, 60, 135, 20);
 				jp_registro.add(jl_login);
+				
+				jl_exit = new JLabel("   Exit");
+				jl_exit.addMouseListener(new MouseAdapter() {
+					public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
+						jl_exit.setForeground(new Color(0,0,0));
+					}
+					
+					public void mouseClicked(MouseEvent a) {
+						dispose();
+						System.exit(1);											//---=== EXIT A LA APLICACION
+					}
+					
+				});
+				jl_exit.addMouseMotionListener(new MouseMotionAdapter() {		//---=== HACE LA FUNCION DE UN HOBER SOBRE EL LABEL
+					public void mouseMoved(MouseEvent a) {
+						jl_exit.setForeground(new Color(55,71,79));
+					}
+				});
+				jl_exit.setFont(new Font("Century Gothic", Font.BOLD, 11));
+				jl_exit.setFocusable(false);
+				jl_exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				jl_exit.setBounds(5, 85, 135, 20);
+				jp_registro.add(jl_exit);
 				
 				JSeparator separator = new JSeparator();
 				separator.setForeground(new Color(169, 169, 169));
@@ -258,7 +270,8 @@ public class Bnk_GUI extends JFrame{
 	
 	public void addME(Bnk_GUI me) {
 		this.me=me;
-	}
+	}// END METODO
+	
 /******************************************************************************************************************/	
 //	class Dashboar_listener extends MouseAdapter implements MouseMotionListener {
 //		public void mouseExited(MouseEvent a) {

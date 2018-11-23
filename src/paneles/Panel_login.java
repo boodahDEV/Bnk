@@ -13,11 +13,13 @@ import java.awt.event.ActionEvent;
 public class Panel_login extends JPanel {
 	private JTextField jtf_user;
 	private JPasswordField jpf_pass;
-
+	protected Bnk_GUI gui;
+	private String type_login;
 	/**
 	 * Create the panel.
 	 */
 	public Panel_login(Bnk_GUI gui) {
+		this.gui=gui;
 		this.setBounds(0, 0, 1035, 582);
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
@@ -61,15 +63,30 @@ public class Panel_login extends JPanel {
 		add(jpf_pass);
 		
 		MaterialButton jblogin = new MaterialButton();
-		jblogin.addActionListener(new ActionListener() {		//---=== 
+		jblogin.addActionListener(new ActionListener() {									//---=== ESCUCHA DEL BOTON DE INICIAR SESION
+			boolean band = false;
 			public void actionPerformed(ActionEvent e) {
 			String user = jtf_user.getText(); char [] pass = jpf_pass.getPassword();
 			String passConv = new String(pass);
-			if(user.equalsIgnoreCase("admin") && passConv.equals("12345")) {
-				//gui.dashboard.setBackground(new Color(255,23,68));
-				gui.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
-			}
 			
+			if(user.equals("admin") && passConv.equals("12345")) {
+				//gui.dashboard.setBackground(new Color(255,23,68));						//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+				type_login = "admin";														//---=== ESTA BANDERA DEBE SER SOLO, ADMIN O USER.
+				gui.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
+				type_login();	//DETERMINA EL TIPO DE PANEL
+				if(band)
+					Animacion.Animacion.subir(10, -60, 2, 1, gui.jp_notify);
+				
+					
+			}else {
+				
+				jtf_user.setText("");
+				jpf_pass.setText("");
+				gui.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
+				Animacion.Animacion.bajar(-60, 10, 2, 1, gui.jp_notify);
+				band=true;
+
+			}
 //				Data []listaNueva = null;
 //				
 //				try{
@@ -95,7 +112,7 @@ public class Panel_login extends JPanel {
 //						
 //				}
 				
-				
+			
 			}
 		});
 		jblogin.setText("Access");
@@ -127,4 +144,17 @@ public class Panel_login extends JPanel {
 		add(label_fondo);
 	}
 	
+	public void type_login() {//---=== ESTA FUNCION DEL LOGIN DETERMINA QUE TIPO DE PANEL DEBE MOSTRAR LUEGO DEL LOGIN
+		if(type_login.equals("admin")) {
+			paneles.Panel_admin pa = new paneles.Panel_admin(gui);
+			new paneles.Cambia_paneles(gui.principal, pa);				//---=== EJECUTA EL PANEL ADMIN
+		}else {
+			if(type_login.isEmpty()) {
+				System.out.println("ERROR- tipo incorrecto");
+			}else {
+				//---=== SI ES EL CASO DE QUE EL TIPO_LOGIN SEA USER -> LANZO EL PANEL DE LOS USUARIOS.
+			}
+			
+		}	
+	}
 }//---=== END CLASS 
