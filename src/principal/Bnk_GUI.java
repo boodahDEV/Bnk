@@ -162,15 +162,13 @@ public class Bnk_GUI extends JFrame{
 					}
 				});
 				exit_min.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				exit_min.setRolloverSelectedIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit2.png")));
-				exit_min.setRolloverIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit2.png")));
 				exit_min.setIconTextGap(-20);
 				exit_min.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/exit.png")));
-				exit_min.setToolTipText("click to open the dashboard");
+				exit_min.setToolTipText("Exit");
 				exit_min.setFocusable(false);
 				exit_min.setContentAreaFilled(false);
 				exit_min.setBorderPainted(false);
-				exit_min.setBounds(5, 545, 40, 40);
+				exit_min.setBounds(3, 545, 40, 40);
 				dashboard.add(exit_min);
 				
 				up_dashboard = new JLabel(" ");			//--== ESTO ES MAS QUE LA SIMPLE ESQUINA QUE ESTA LOCALIZADA EN EL DASHBOARD EN LA PARTE SUPERIOR

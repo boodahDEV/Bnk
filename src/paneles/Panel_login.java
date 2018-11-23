@@ -70,7 +70,8 @@ public class Panel_login extends JPanel {
 			String passConv = new String(pass);
 			
 			if(user.equals("admin") && passConv.equals("12345")) {
-				//gui.dashboard.setBackground(new Color(255,23,68));						//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+				gui.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upRED.png")));
+				gui.dashboard.setBackground(new Color(255,23,68));						//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
 				type_login = "admin";														//---=== ESTA BANDERA DEBE SER SOLO, ADMIN O USER.
 				gui.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
 				type_login();	//DETERMINA EL TIPO DE PANEL
@@ -149,12 +150,7 @@ public class Panel_login extends JPanel {
 			paneles.Panel_admin pa = new paneles.Panel_admin(gui);
 			new paneles.Cambia_paneles(gui.principal, pa);				//---=== EJECUTA EL PANEL ADMIN
 		}else {
-			if(type_login.isEmpty()) {
-				System.out.println("ERROR- tipo incorrecto");
-			}else {
 				//---=== SI ES EL CASO DE QUE EL TIPO_LOGIN SEA USER -> LANZO EL PANEL DE LOS USUARIOS.
-			}
-			
 		}	
 	}
 }//---=== END CLASS 
