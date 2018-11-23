@@ -5,11 +5,12 @@ import java.io.*;
 
 public class AgregarCliente{
 
-	private ArrayList <ClientesDB> lista = new ArrayList<ClientesDB>();
+	private ArrayList <Data> lista = new ArrayList<Data>();
 
-	public AgregarCliente(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta) {
-		agregandoClientes(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta);
-	}
+	public AgregarCliente(String nombre, String apellido, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta) {
+		addClient("admin","","",0.0,"12345","");
+		//addClient(nombre, apellido, numCuenta, saldoInicial, contrasena, tipoCuenta);
+	}	//---=== FIN CONSTRUCTOR
 
 				/*
 				//------------------Datos int y double---------------------
@@ -28,29 +29,35 @@ public class AgregarCliente{
 
 	
 
-	private void agregandoClientes(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta){
+	private void addClient(String nombre, String apellido, String numCuenta, double saldoInicial, String contrasena, String tipoCuenta){
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream("data.txt"));
-			ArrayList<ClientesDB[]> personal_Recuperado = (ArrayList<ClientesDB[]>) input.readObject();
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream("data_1.dll"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Data[]> data_recuperada = (ArrayList<Data[]>) input.readObject();
 			input.close();
 			
-			ClientesDB []listaNueva = new ClientesDB[personal_Recuperado.size()];
-			personal_Recuperado.toArray(listaNueva);
+			Data []listaNueva = new Data[data_recuperada.size()];
+			data_recuperada.toArray(listaNueva);
 			
-			for(ClientesDB e: listaNueva)
+			for(Data e: listaNueva)
 				lista.add(e);
 			
 			
-		}catch (Exception e1) { }
+		}catch (Exception e1) {System.out.println("ERROR1");  }
 		
-	lista.add(new ClientesDB(nombre, apellido, usuario, numCuenta, saldoInicial, contrasena, tipoCuenta));
+	lista.add(new Data(nombre, apellido, numCuenta, saldoInicial, contrasena, tipoCuenta));
 		
 		try{	
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.txt"));
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data_1.dll"));
 			out.writeObject(lista);
 			out.close();
-		}catch(Exception e){ }	
+		}catch(Exception e){System.out.println("ERROR2"); }	
 		
-	}		//---=== FIN METODO AGREGAR CLIENTES A LA LISTA DEL ARCHIVO	
+	}//---=== FIN METODO AGREGAR CLIENTES A LA LISTA DEL ARCHIVO	
+	
+	public static void main(String args[]) {
+		AgregarCliente ac = new AgregarCliente(null, null, null, 0, null, null);
+		System.out.println("SE ANADIO");
+	}
 
 }		//---=== END CLASS

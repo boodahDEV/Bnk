@@ -10,21 +10,21 @@ import Resources.MaterialButton;
 
 public class Bnk_GUI extends JFrame{
 
-	private JPanel contentPane,jpnorte,dashboard,jp_notify;
+	public JPanel contentPane,jpnorte,dashboard,jp_notify;
 	protected JButton search,menu,user;
 	protected JLabel up_dashboard,title,jl_login;
 	protected boolean bandera = true;
-	protected Dashboar_listener dl =new Dashboar_listener();
 	protected MaterialButton exit;
 	protected int x,y;
 	private JPanel jp_registro;
 	private JLabel up_registro;
 	private JButton exit_min;
 	private JPanel principal;
-	
+	public Bnk_GUI me;
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
 			frame.setVisible(true);
+			frame.addME(frame);
 	}		//---=== END MAIN
 
 	
@@ -192,7 +192,7 @@ public class Bnk_GUI extends JFrame{
 				contentPane.add(up_dashboard);
 		
 		up_registro = new JLabel(" ");
-		up_registro.setBounds(1062, 62, 25, 14);		//---=== altura normal es de 14 y la posicion era de 61
+		up_registro.setBounds(1062, 62, 25, 14);		//---=== altura normal es de 14 y la posicion era de 62
 		up_registro.setVisible(false);
 		up_registro.setIconTextGap(-10);
 		up_registro.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/down_user.png")));
@@ -200,8 +200,8 @@ public class Bnk_GUI extends JFrame{
 		contentPane.add(up_registro);
 		
 		jp_registro = new JPanel();
-	//	jp_registro.setBounds(945, 2, 145, 60);			//---=== altura normal es de 110 y la posicion era de 70
-		jp_registro.setBounds(945,70,145,110);
+		jp_registro.setBounds(945, 2, 145, 60);			//---=== altura normal es de 110 y la posicion era de 70
+	//	jp_registro.setBounds(945,70,145,110);
 		contentPane.add(jp_registro);
 		jp_registro.setLayout(null);
 		
@@ -209,7 +209,6 @@ public class Bnk_GUI extends JFrame{
 		principal.setLayout(null);
 		principal.setBounds(70, 70, 1035, 585);
 		principal.setBackground(new Color(16,32,39));
-		//new paneles.Cambia_paneles(principal, new paneles.Panel_login());	//---=== LO QUE QUIERO QUE HAGA!
 		contentPane.add(principal);
 				
 				jl_login = new JLabel("   Log in");
@@ -218,7 +217,7 @@ public class Bnk_GUI extends JFrame{
 								jl_login.setForeground(new Color(0,0,0));
 							}
 							public void mouseClicked(MouseEvent a) {
-								new paneles.Cambia_paneles(principal, new paneles.Panel_login());	//---=== LO QUE QUIERO QUE HAGA! 
+								new paneles.Cambia_paneles(principal, new paneles.Panel_login(me));	//---=== LO QUE QUIERO QUE HAGA! 
 								Animacion.subir(70, 2, 4, 2, jp_registro);		//---=== MUEVE EL REGISTRO HACIA ARRIBA
 								jp_registro.setBounds(945, 2, 145, 60);			//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
 								up_registro.setVisible(false);
@@ -257,19 +256,21 @@ public class Bnk_GUI extends JFrame{
 		}catch(Exception e) {System.out.println("ERROR File! \n"+e);}
 	}		//---=== METODO EN EL CUAL CONTROLA LAS VERSIONES DEL PROGRAMA
 	
-	
+	public void addME(Bnk_GUI me) {
+		this.me=me;
+	}
 /******************************************************************************************************************/	
-	class Dashboar_listener extends MouseAdapter implements MouseMotionListener {
-		public void mouseExited(MouseEvent a) {
-			dashboard.setBounds(10, 70, 50, 585);
-			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		}		//---=== EVENTO AL MOVER EL DASHBOARD A SU ESATDO NORMAL
-		
-		public void mouseMoved(MouseEvent a) {
-			dashboard.setBounds(10, 70, 190, 585);
-			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		}		//---=== EVENTO AL MOVER POR ENCIMA DEL DASHBOARD
-	}		//---=== END CLASS
+//	class Dashboar_listener extends MouseAdapter implements MouseMotionListener {
+//		public void mouseExited(MouseEvent a) {
+//			dashboard.setBounds(10, 70, 50, 585);
+//			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+//		}		//---=== EVENTO AL MOVER EL DASHBOARD A SU ESATDO NORMAL
+//		
+//		public void mouseMoved(MouseEvent a) {
+//			dashboard.setBounds(10, 70, 190, 585);
+//			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		}		//---=== EVENTO AL MOVER POR ENCIMA DEL DASHBOARD
+//	}		//---=== END CLASS
 }		//---=== END CLASS
 
 

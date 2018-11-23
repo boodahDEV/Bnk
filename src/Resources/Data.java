@@ -1,17 +1,16 @@
 package Resources;
 
-public class ClientesDB{
+public class Data{
 	
-	private String nombre, apellido, usuario, contrasena, tipoCuenta;
+	private String nombre, apellido, contrasena, tipoCuenta;
 	private double saldoInicial;
 	private String numCuenta;
 	
 
-	public ClientesDB(String nombre, String apellido, String usuario, String numCuenta, double saldoInicial,
+	public Data(String nombre, String apellido, String numCuenta, double saldoInicial,
 			String contrasena, String tipoCuenta) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.usuario = usuario;
 		this.numCuenta = numCuenta;
 		this.saldoInicial = saldoInicial;
 		this.contrasena = contrasena; 
@@ -24,10 +23,6 @@ public class ClientesDB{
 
 	public String getApellido() {
 		return apellido;
-	}
-
-	public String getUsuario() {
-		return usuario;
 	}
 
 	public String getNumCuenta() {
