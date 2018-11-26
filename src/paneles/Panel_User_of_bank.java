@@ -3,6 +3,7 @@ package paneles;
 import java.awt.Color;
 
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -11,6 +12,8 @@ import javax.swing.border.MatteBorder;
 
 import Resources.MaterialButton;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Panel_User_of_bank extends JPanel {
 	private JPasswordField jpf_pass;
@@ -45,6 +48,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jpf_pass);
 		
 		MaterialButton jbnum_1 = new MaterialButton();
+		jbnum_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("1");
+			}
+		});
 		jbnum_1.setText("1");
 		jbnum_1.setColorNormal(new Color(66,66,66));
 		jbnum_1.setColorHover(new Color(30,136,229));
@@ -57,6 +65,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_1);
 		
 		MaterialButton jbnum_2 = new MaterialButton();
+		jbnum_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("2");
+			}
+		});
 		jbnum_2.setText("2");
 		jbnum_2.setColorNormal(new Color(66,66,66));
 		jbnum_2.setColorHover(new Color(30,136,229));
@@ -69,6 +82,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_2);
 		
 		MaterialButton jbnum_3 = new MaterialButton();
+		jbnum_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("3");
+			}
+		});
 		jbnum_3.setText("3");
 		jbnum_3.setColorNormal(new Color(66,66,66));
 		jbnum_3.setColorHover(new Color(30,136,229));
@@ -81,6 +99,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_3);
 		
 		MaterialButton jbnum_4 = new MaterialButton();
+		jbnum_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("4");
+			}
+		});
 		jbnum_4.setText("4");
 		jbnum_4.setColorNormal(new Color(66,66,66));
 		jbnum_4.setColorHover(new Color(30,136,229));
@@ -93,6 +116,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_4);
 		
 		MaterialButton jbnum_5 = new MaterialButton();
+		jbnum_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("5");
+			}
+		});
 		jbnum_5.setText("5");
 		jbnum_5.setColorNormal(new Color(66,66,66));
 		jbnum_5.setColorHover(new Color(30,136,229));
@@ -105,6 +133,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_5);
 		
 		MaterialButton jbnum_6 = new MaterialButton();
+		jbnum_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("6");
+			}
+		});
 		jbnum_6.setText("6");
 		jbnum_6.setColorNormal(new Color(66,66,66));
 		jbnum_6.setColorHover(new Color(30,136,229));
@@ -129,6 +162,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_7);
 		
 		MaterialButton jbnum_8 = new MaterialButton();
+		jbnum_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("8");
+			}
+		});
 		jbnum_8.setText("8");
 		jbnum_8.setColorNormal(new Color(66,66,66));
 		jbnum_8.setColorHover(new Color(30,136,229));
@@ -141,6 +179,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_8);
 		
 		MaterialButton jbnum_9 = new MaterialButton();
+		jbnum_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("9");
+			}
+		});
 		jbnum_9.setText("9");
 		jbnum_9.setColorNormal(new Color(66,66,66));
 		jbnum_9.setColorHover(new Color(30,136,229));
@@ -153,6 +196,11 @@ public class Panel_User_of_bank extends JPanel {
 		add(jbnum_9);
 		
 		MaterialButton jbnum_0 = new MaterialButton();
+		jbnum_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				poner("0");
+			}
+		});
 		jbnum_0.setText("0");
 		jbnum_0.setColorNormal(new Color(66,66,66));
 		jbnum_0.setColorHover(new Color(30,136,229));
@@ -163,8 +211,16 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_0.setFocusable(false);
 		jbnum_0.setBounds(483, 416, 50, 35);
 		add(jbnum_0);
+
 		
 		MaterialButton jbaccept = new MaterialButton();
+		jbaccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				char []text = jpf_pass.getPassword();
+				String temp = String.valueOf(text);
+				//---=== DEBO EVALUAR LAS CLAVES DENTRO DE MI TXT
+			}
+		});
 		jbaccept.setText("Accept");
 		jbaccept.setColorNormal(new Color(66,66,66));
 		jbaccept.setColorHover(new Color(30,136,229));
@@ -176,5 +232,11 @@ public class Panel_User_of_bank extends JPanel {
 		jbaccept.setBounds(593, 439, 67, 35);
 		add(jbaccept);
 		
+	}
+	
+	public void poner(String num){
+		char []text = jpf_pass.getPassword();
+		String temp = String.valueOf(text);
+		jpf_pass.setText(""+temp+num);
 	}
 }

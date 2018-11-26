@@ -22,12 +22,34 @@ public class Panel_admin extends JPanel {
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
 		
-		JLabel login = new JLabel("Welcome ADMIN madafaca :V");
+		JLabel login = new JLabel("Welcome ADMIN of the configure system");
 		login.setHorizontalAlignment(SwingConstants.CENTER);
 		login.setForeground(new Color(169, 169, 169));
 		login.setFont(new Font("Century Schoolbook L", Font.PLAIN, 40));
-		login.setBounds(445, 39, 300, 65);
+		login.setBounds(125, 35, 800, 65);
 		add(login);
+		
+		JLabel icon = new JLabel(" ");
+		icon.setIcon(new ImageIcon(Panel_admin.class.getResource("/image/config.png")));
+		icon.setBounds(473, 111, 64, 64);
+		add(icon);
+		
+
+		JButton jbadd = new JButton("");
+		jbadd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		jbadd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		jbadd.setIconTextGap(-20);
+		jbadd.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/add.png")));
+		jbadd.setToolTipText("Exit");
+		jbadd.setFocusable(false);
+		jbadd.setContentAreaFilled(false);
+		jbadd.setBorderPainted(false);
+		jbadd.setBounds(3, 5, 40, 40);
+		gui.dashboard.add(jbadd);
 		
 	}
 	

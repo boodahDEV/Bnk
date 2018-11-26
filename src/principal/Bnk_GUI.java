@@ -206,7 +206,8 @@ public class Bnk_GUI extends JFrame{
 								new paneles.Cambia_paneles(principal, new paneles.Panel_login(me)); //---=== EJECUTA EL PANEL_LOGIN 
 								Animacion.subir(70, 2, 4, 2, jp_registro);				//---=== MUEVE EL REGISTRO HACIA ARRIBA
 								jp_registro.setBounds(945, 2, 145, 60);					//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
-								up_registro.setVisible(false);					
+								up_registro.setVisible(false);	
+								jl_login.setEnabled(false);
 								bandera=true;
 							}
 						});
@@ -216,7 +217,7 @@ public class Bnk_GUI extends JFrame{
 							}
 						});
 				
-				jl_login.setFont(new Font("Century Gothic", Font.BOLD, 11));
+				jl_login.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 				jl_login.setFocusable(false);
 				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				jl_login.setBounds(5, 60, 135, 20);

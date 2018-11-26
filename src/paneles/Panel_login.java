@@ -87,33 +87,7 @@ public class Panel_login extends JPanel {
 				Animacion.Animacion.bajar(-60, 10, 2, 1, gui.jp_notify);
 				band=true;
 
-			}
-//				Data []listaNueva = null;
-//				
-//				try{
-//					
-//					ObjectInputStream leer_fichero = new ObjectInputStream(new FileInputStream("./Resources/data_1.dll"));
-//					System.out.println("archivo abierto!");
-//					ArrayList<Data[]> data_recuperada = (ArrayList<Data[]>) leer_fichero.readObject();
-//					leer_fichero.close();
-//					
-//					listaNueva = new Data[data_recuperada.size()];
-//					data_recuperada.toArray(listaNueva);			
-//					
-//				}catch(Exception e1){
-//					System.out.println("fichero no encontrado");
-//				}		
-//				
-//				
-//				
-//				for(int i = 0;i<listaNueva.length;i++) {
-//					if((user.equals("admin") && user.equals(listaNueva[i].getApellido()) ) && passConv.equals("12345")){
-//						System.out.println("dentro de admin.");
-//					}
-//						
-//				}
-				
-			
+				}		
 			}
 		});
 		jblogin.setText("Access");
