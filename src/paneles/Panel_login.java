@@ -71,7 +71,7 @@ public class Panel_login extends JPanel {
 			
 			if(user.equals("admin") && passConv.equals("12345")) {
 				gui.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upRED.png")));
-				gui.dashboard.setBackground(new Color(255,23,68));						//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+				gui.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
 				type_login = "admin";														//---=== ESTA BANDERA DEBE SER SOLO, ADMIN O USER.
 				gui.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
 				type_login();	//DETERMINA EL TIPO DE PANEL
@@ -128,6 +128,12 @@ public class Panel_login extends JPanel {
 		add(jblogin);
 		
 		MaterialButton jbregist = new MaterialButton();
+		jbregist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				type_login="User";
+				type_login();
+			}
+		});
 		jbregist.setText("Users of Bank");
 		jbregist.setColorNormal(new Color(66,66,66));
 		jbregist.setColorHover(new Color(30,136,229));
@@ -150,6 +156,8 @@ public class Panel_login extends JPanel {
 			paneles.Panel_admin pa = new paneles.Panel_admin(gui);
 			new paneles.Cambia_paneles(gui.principal, pa);				//---=== EJECUTA EL PANEL ADMIN
 		}else {
+				paneles.Panel_User_of_bank pu = new paneles.Panel_User_of_bank();
+				new paneles.Cambia_paneles(gui.principal, pu);
 				//---=== SI ES EL CASO DE QUE EL TIPO_LOGIN SEA USER -> LANZO EL PANEL DE LOS USUARIOS.
 		}	
 	}
