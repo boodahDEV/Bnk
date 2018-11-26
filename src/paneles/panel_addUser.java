@@ -15,7 +15,7 @@ public class panel_addUser extends JPanel {
 	private JTextField jtf_numac;
 
 	/**
-	 * Create the panel.
+	 * Create the panel ADD_USER.
 	 */
 	public panel_addUser() {
 		this.setBounds(0, 0, 1035, 582);
