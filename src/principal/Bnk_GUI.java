@@ -171,6 +171,7 @@ public class Bnk_GUI extends JFrame{
 				exit_min.setBounds(3, 545, 40, 40);
 				dashboard.add(exit_min);
 				
+				
 				up_dashboard = new JLabel(" ");			//--== ESTO ES MAS QUE LA SIMPLE ESQUINA QUE ESTA LOCALIZADA EN EL DASHBOARD EN LA PARTE SUPERIOR
 				up_dashboard.setFocusable(false);
 				up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/up.png")));
@@ -203,7 +204,7 @@ public class Bnk_GUI extends JFrame{
 								jl_login.setForeground(new Color(0,0,0));
 							}
 							public void mouseClicked(MouseEvent a) {
-								new paneles.Cambia_paneles(principal, new paneles.Panel_login(me)); //---=== EJECUTA EL PANEL_LOGIN 
+								new paneles.Cambia_paneles(principal, new paneles.Panel_User_of_bank(me)); //---=== EJECUTA EL PANEL_LOGIN 
 								Animacion.subir(70, 2, 4, 2, jp_registro);				//---=== MUEVE EL REGISTRO HACIA ARRIBA
 								jp_registro.setBounds(945, 2, 145, 60);					//---=== SETEA LA ALTURA ORIGINAL DEL PANERL DE REGISTRO
 								up_registro.setVisible(false);	
@@ -270,19 +271,6 @@ public class Bnk_GUI extends JFrame{
 	public void addME(Bnk_GUI me) {
 		this.me=me;
 	}// END METODO
-	
-/******************************************************************************************************************/	
-//	class Dashboar_listener extends MouseAdapter implements MouseMotionListener {
-//		public void mouseExited(MouseEvent a) {
-//			dashboard.setBounds(10, 70, 50, 585);
-//			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-//		}		//---=== EVENTO AL MOVER EL DASHBOARD A SU ESATDO NORMAL
-//		
-//		public void mouseMoved(MouseEvent a) {
-//			dashboard.setBounds(10, 70, 190, 585);
-//			dashboard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//		}		//---=== EVENTO AL MOVER POR ENCIMA DEL DASHBOARD
-//	}		//---=== END CLASS
 }		//---=== END CLASS
 
 
