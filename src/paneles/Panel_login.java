@@ -130,7 +130,7 @@ public class Panel_login extends JPanel {
 			paneles.Panel_admin pa = new paneles.Panel_admin(gui);
 			new paneles.Cambia_paneles(gui.principal, pa);				//---=== EJECUTA EL PANEL ADMIN
 		}else {
-				paneles.Panel_User_of_bank pu = new paneles.Panel_User_of_bank();
+				paneles.Panel_User_of_bank pu = new paneles.Panel_User_of_bank(gui);
 				new paneles.Cambia_paneles(gui.principal, pu);
 				//---=== SI ES EL CASO DE QUE EL TIPO_LOGIN SEA USER -> LANZO EL PANEL DE LOS USUARIOS.
 		}	

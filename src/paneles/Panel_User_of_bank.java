@@ -2,39 +2,36 @@ package paneles;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
+
 import javax.swing.border.MatteBorder;
 
 import Resources.MaterialButton;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import principal.Bnk_GUI;
+import java.awt.event.*;
 
 public class Panel_User_of_bank extends JPanel {
 	private JPasswordField jpf_pass;
-
+	public boolean band;
 	/**
 	 * Create the panel.
 	 */
-	public Panel_User_of_bank() {
+	public Panel_User_of_bank(Bnk_GUI main) {
 		this.setBounds(0, 0, 1035, 582);
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
 		
 		JLabel lblBnk = new JLabel("BNK ");
 		lblBnk.setForeground(new Color(128, 128, 128));
-		lblBnk.setFont(new Font("Century Schoolbook L", Font.BOLD, 40));
-		lblBnk.setBounds(457, 48, 110, 40);
+		lblBnk.setFont(new Font("Century Gothic", Font.BOLD, 40));
+		lblBnk.setBounds(582, 25, 110, 40);
 		add(lblBnk);
 		
 		JLabel lblBnk2 = new JLabel("The most reliable system.");
-		lblBnk2.setFont(new Font("Century Schoolbook L", Font.BOLD, 25));
-		lblBnk2.setBounds(340, 80, 340, 40);
+		lblBnk2.setForeground(new Color(105, 105, 105));
+		lblBnk2.setFont(new Font("Century Gothic", Font.BOLD, 25));
+		lblBnk2.setBounds(473, 76, 340, 40);
 		add(lblBnk2);
 		
 		jpf_pass = new JPasswordField();
@@ -44,7 +41,7 @@ public class Panel_User_of_bank extends JPanel {
 		jpf_pass.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(105, 105, 105)));
 		jpf_pass.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		jpf_pass.setEchoChar('*');
-		jpf_pass.setBounds(423, 220, 170, 30);
+		jpf_pass.setBounds(536, 216, 170, 30);
 		add(jpf_pass);
 		
 		MaterialButton jbnum_1 = new MaterialButton();
@@ -61,7 +58,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_1.setColorTextHover(new Color(255,255,255));
 		jbnum_1.setColorTextPressed(new Color(255,255,255));
 		jbnum_1.setFocusable(false);
-		jbnum_1.setBounds(423, 275, 50, 35);
+		jbnum_1.setBounds(536, 271, 50, 35);
 		add(jbnum_1);
 		
 		MaterialButton jbnum_2 = new MaterialButton();
@@ -78,7 +75,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_2.setColorTextHover(new Color(255,255,255));
 		jbnum_2.setColorTextPressed(new Color(255,255,255));
 		jbnum_2.setFocusable(false);
-		jbnum_2.setBounds(483, 275, 50, 35);
+		jbnum_2.setBounds(596, 271, 50, 35);
 		add(jbnum_2);
 		
 		MaterialButton jbnum_3 = new MaterialButton();
@@ -95,7 +92,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_3.setColorTextHover(new Color(255,255,255));
 		jbnum_3.setColorTextPressed(new Color(255,255,255));
 		jbnum_3.setFocusable(false);
-		jbnum_3.setBounds(543, 275, 50, 35);
+		jbnum_3.setBounds(656, 271, 50, 35);
 		add(jbnum_3);
 		
 		MaterialButton jbnum_4 = new MaterialButton();
@@ -112,7 +109,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_4.setColorTextHover(new Color(255,255,255));
 		jbnum_4.setColorTextPressed(new Color(255,255,255));
 		jbnum_4.setFocusable(false);
-		jbnum_4.setBounds(423, 322, 50, 35);
+		jbnum_4.setBounds(536, 318, 50, 35);
 		add(jbnum_4);
 		
 		MaterialButton jbnum_5 = new MaterialButton();
@@ -129,7 +126,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_5.setColorTextHover(new Color(255,255,255));
 		jbnum_5.setColorTextPressed(new Color(255,255,255));
 		jbnum_5.setFocusable(false);
-		jbnum_5.setBounds(483, 322, 50, 35);
+		jbnum_5.setBounds(596, 318, 50, 35);
 		add(jbnum_5);
 		
 		MaterialButton jbnum_6 = new MaterialButton();
@@ -146,7 +143,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_6.setColorTextHover(new Color(255,255,255));
 		jbnum_6.setColorTextPressed(new Color(255,255,255));
 		jbnum_6.setFocusable(false);
-		jbnum_6.setBounds(543, 322, 50, 35);
+		jbnum_6.setBounds(656, 318, 50, 35);
 		add(jbnum_6);
 		
 		MaterialButton jbnum_7 = new MaterialButton();
@@ -158,7 +155,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_7.setColorTextHover(new Color(255,255,255));
 		jbnum_7.setColorTextPressed(new Color(255,255,255));
 		jbnum_7.setFocusable(false);
-		jbnum_7.setBounds(423, 369, 50, 35);
+		jbnum_7.setBounds(536, 365, 50, 35);
 		add(jbnum_7);
 		
 		MaterialButton jbnum_8 = new MaterialButton();
@@ -175,7 +172,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_8.setColorTextHover(new Color(255,255,255));
 		jbnum_8.setColorTextPressed(new Color(255,255,255));
 		jbnum_8.setFocusable(false);
-		jbnum_8.setBounds(483, 369, 50, 35);
+		jbnum_8.setBounds(596, 365, 50, 35);
 		add(jbnum_8);
 		
 		MaterialButton jbnum_9 = new MaterialButton();
@@ -192,7 +189,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_9.setColorTextHover(new Color(255,255,255));
 		jbnum_9.setColorTextPressed(new Color(255,255,255));
 		jbnum_9.setFocusable(false);
-		jbnum_9.setBounds(543, 369, 50, 35);
+		jbnum_9.setBounds(656, 365, 50, 35);
 		add(jbnum_9);
 		
 		MaterialButton jbnum_0 = new MaterialButton();
@@ -209,7 +206,7 @@ public class Panel_User_of_bank extends JPanel {
 		jbnum_0.setColorTextHover(new Color(255,255,255));
 		jbnum_0.setColorTextPressed(new Color(255,255,255));
 		jbnum_0.setFocusable(false);
-		jbnum_0.setBounds(483, 416, 50, 35);
+		jbnum_0.setBounds(596, 412, 50, 35);
 		add(jbnum_0);
 
 		
@@ -219,6 +216,25 @@ public class Panel_User_of_bank extends JPanel {
 				char []text = jpf_pass.getPassword();
 				String temp = String.valueOf(text);
 				//---=== DEBO EVALUAR LAS CLAVES DENTRO DE MI TXT
+				if(temp.equals("1234")) {
+					main.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upRED.png")));
+					main.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+					main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
+					new paneles.Cambia_paneles(main.principal, new paneles.Panel_admin(main));
+					if(band) {
+						Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
+						band=false;
+					}
+						
+				}else {
+					
+					jpf_pass.setText("");
+					jpf_pass.setText("");
+					main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
+					Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+					band=true;
+
+					}		
 			}
 		});
 		jbaccept.setText("Accept");
@@ -229,8 +245,13 @@ public class Panel_User_of_bank extends JPanel {
 		jbaccept.setColorTextHover(new Color(255,255,255));
 		jbaccept.setColorTextPressed(new Color(255,255,255));
 		jbaccept.setFocusable(false);
-		jbaccept.setBounds(593, 439, 67, 35);
+		jbaccept.setBounds(706, 435, 67, 35);
 		add(jbaccept);
+		
+		JLabel label = new JLabel(" ");
+		label.setIcon(new ImageIcon(Panel_User_of_bank.class.getResource("/image/p_log_in.png")));
+		label.setBounds(0, 0, 1035, 877);
+		add(label);
 		
 	}
 	
