@@ -17,6 +17,8 @@ public class Bnk_GUI extends JFrame{
 	public MaterialButton exit;
 	public int x,y;
 	public Bnk_GUI me;
+	private JLabel titulo;
+	private JLabel fondo;
 	
 	
 	
@@ -171,6 +173,17 @@ public class Bnk_GUI extends JFrame{
 				exit_min.setBounds(3, 545, 40, 40);
 				dashboard.add(exit_min);
 				
+				JButton log = new JButton("");
+				log.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				log.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/login.png")));
+				log.setToolTipText("Exit");
+				log.setIconTextGap(-20);
+				log.setFocusable(false);
+				log.setContentAreaFilled(false);
+				log.setBorderPainted(false);
+				log.setBounds(3, 11, 40, 40);
+				dashboard.add(log);
+				
 				
 				up_dashboard = new JLabel(" ");			//--== ESTO ES MAS QUE LA SIMPLE ESQUINA QUE ESTA LOCALIZADA EN EL DASHBOARD EN LA PARTE SUPERIOR
 				up_dashboard.setFocusable(false);
@@ -197,6 +210,28 @@ public class Bnk_GUI extends JFrame{
 		principal.setBounds(70, 70, 1035, 585);
 		principal.setBackground(new Color(16,32,39));
 		contentPane.add(principal);
+		
+		titulo = new JLabel("Welcome to the Bnk  system");
+		titulo.setForeground(new Color(105, 105, 105));
+		titulo.setFont(new Font("Century Gothic", Font.PLAIN, 45));
+		titulo.setBounds(46, 122, 717, 302);
+		principal.add(titulo);
+		
+		fondo = new JLabel("");
+		fondo.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/wallpaper1.png")));
+		fondo.setBounds(398, 0, 732, 574);
+		principal.add(fondo);
+		
+		JLabel arrow_left = new JLabel(" ");
+		arrow_left.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/senal.png")));
+		arrow_left.setBounds(0, 10, 35, 35);
+		principal.add(arrow_left);
+		
+		JLabel lblSignIn = new JLabel("Sign in");
+		lblSignIn.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		lblSignIn.setForeground(new Color(105, 105, 105));
+		lblSignIn.setBounds(38, 20, 51, 21);
+		principal.add(lblSignIn);
 				
 				jl_login = new JLabel("   Log in");
 						jl_login.addMouseListener(new MouseAdapter() {
