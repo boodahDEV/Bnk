@@ -39,6 +39,7 @@ public class Panel_admin extends JPanel {
 		jbadd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 								//---=== Se llama al panel_addUser
+				new paneles.Cambia_paneles(gui.principal, new paneles.panel_addUser());
 			}
 		});
 		jbadd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

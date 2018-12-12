@@ -11,14 +11,13 @@ import Resources.MaterialButton;
 public class Bnk_GUI extends JFrame{
 
 	public JPanel contentPane,jpnorte,dashboard,jp_notify,principal,jp_registro;
-	public JButton search,menu,user,exit_min;
+	public JButton search,menu,user,exit_min,log;
 	public JLabel up_dashboard,title,jl_login,up_registro,jl_exit,jl_text;
 	public boolean bandera = true;
 	public MaterialButton exit;
 	public int x,y;
 	public Bnk_GUI me;
 	private JLabel titulo;
-	private JLabel fondo;
 	
 	
 	
@@ -173,7 +172,14 @@ public class Bnk_GUI extends JFrame{
 				exit_min.setBounds(3, 545, 40, 40);
 				dashboard.add(exit_min);
 				
-				JButton log = new JButton("");
+				log = new JButton("");
+				log.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent a) {
+													//---=== ESTE ES EL INICIO DE SESION DEL BOTON EN EL DASHBOARD, LO CUAL TENDCRA UNACOPIA EXACTA DEL QUE ESTA DENTRO DEL PANEL DE REGISTRO
+						new paneles.Cambia_paneles(principal, new paneles.Panel_User_of_bank(me)); //---=== EJECUTA EL PANEL_LOGIN 	
+						log.setEnabled(false);
+					}
+				});
 				log.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				log.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/login.png")));
 				log.setToolTipText("Exit");
@@ -214,24 +220,24 @@ public class Bnk_GUI extends JFrame{
 		titulo = new JLabel("Welcome to the Bnk  system");
 		titulo.setForeground(new Color(105, 105, 105));
 		titulo.setFont(new Font("Century Gothic", Font.PLAIN, 45));
-		titulo.setBounds(46, 122, 717, 302);
+		titulo.setBounds(59, 115, 651, 302);
 		principal.add(titulo);
-		
-		fondo = new JLabel("");
-		fondo.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/wallpaper1.png")));
-		fondo.setBounds(398, 0, 732, 574);
-		principal.add(fondo);
 		
 		JLabel arrow_left = new JLabel(" ");
 		arrow_left.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/senal.png")));
 		arrow_left.setBounds(0, 10, 35, 35);
 		principal.add(arrow_left);
 		
-		JLabel lblSignIn = new JLabel("Sign in");
-		lblSignIn.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		lblSignIn.setForeground(new Color(105, 105, 105));
-		lblSignIn.setBounds(38, 20, 51, 21);
-		principal.add(lblSignIn);
+		JLabel text_sign = new JLabel("Sign in");
+		text_sign.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		text_sign.setForeground(new Color(105, 105, 105));
+		text_sign.setBounds(38, 20, 51, 21);
+		principal.add(text_sign);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/wallpaper1.png")));
+		label.setBounds(568, -34, 590, 655);
+		principal.add(label);
 				
 				jl_login = new JLabel("   Log in");
 						jl_login.addMouseListener(new MouseAdapter() {
@@ -257,6 +263,7 @@ public class Bnk_GUI extends JFrame{
 				jl_login.setFocusable(false);
 				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				jl_login.setBounds(5, 60, 135, 20);
+				jl_login.setEnabled(false);
 				jp_registro.add(jl_login);
 				
 				jl_exit = new JLabel("   Exit");
@@ -267,7 +274,12 @@ public class Bnk_GUI extends JFrame{
 					
 					public void mouseClicked(MouseEvent a) {
 						dispose();
-						System.exit(1);											//---=== EXIT A LA APLICACION
+			
+						Bnk_GUI frame = new Bnk_GUI();
+						frame.setVisible(true);
+						frame.addME(frame);
+						new paneles.Cambia_paneles(frame.principal, new paneles.Panel_User_of_bank(frame));
+						
 					}
 					
 				});
@@ -280,6 +292,7 @@ public class Bnk_GUI extends JFrame{
 				jl_exit.setFocusable(false);
 				jl_exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				jl_exit.setBounds(5, 85, 135, 20);
+				jl_exit.setEnabled(false);
 				jp_registro.add(jl_exit);
 				
 				JSeparator separator = new JSeparator();
