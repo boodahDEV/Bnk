@@ -1,21 +1,32 @@
 package paneles;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-import java.awt.SystemColor;
+import Resources.*;
+import principal.Bnk_GUI;
 
 
 public class panel_addUser extends JPanel {
-	private JTextField jtf_lname,jtf_numac,jtf_name,jtf_opbal;
-	private JPasswordField jpf_pass;
-	private JCheckBox jcb_see;
-	private JRadioButton jrb_corriente,jrb_ahorro;
-
+	
+	public JTextField jtf_lname,jtf_numac,jtf_name,jtf_opbal;
+	public JPasswordField jpf_pass;
+	public JRadioButton jrb_corriente,jrb_ahorro;
+	public MaterialButton validar,cargar;
+	public paneles.panel_addUser me;
+	public Bnk_GUI main;
+	public boolean band;
+	String nombre,apellido,tipo_cuenta="",num_cuenta,pass;
+	int balance;
+	Cuenta cuenta = new Cuenta();
+	
 	/**
 	 * Create the panel ADD_USER.
 	 */
-	public panel_addUser() {
+	
+	public panel_addUser(Bnk_GUI main) {
+		this.main=main;
 		this.setBounds(0, 0, 1035, 582);
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
@@ -34,7 +45,6 @@ public class panel_addUser extends JPanel {
 		add(jl_name);
 		
 		jtf_name = new JTextField();
-		jtf_name.setText("test text");
 		jtf_name.setHorizontalAlignment(SwingConstants.CENTER);
 		jtf_name.setForeground(new Color(105, 105, 105));
 		jtf_name.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(105, 105, 105)));
@@ -50,7 +60,6 @@ public class panel_addUser extends JPanel {
 		add(jl_lastName);
 		
 		jtf_lname = new JTextField();
-		jtf_lname.setText("test text");
 		jtf_lname.setHorizontalAlignment(SwingConstants.CENTER);
 		jtf_lname.setForeground(new Color(105, 105, 105));
 		jtf_lname.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -66,7 +75,7 @@ public class panel_addUser extends JPanel {
 		add(jl_numa);
 		
 		jtf_numac = new JTextField();
-		jtf_numac.setText("test text");
+		jtf_numac.setEnabled(false);
 		jtf_numac.setHorizontalAlignment(SwingConstants.CENTER);
 		jtf_numac.setForeground(new Color(105, 105, 105));
 		jtf_numac.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -82,7 +91,6 @@ public class panel_addUser extends JPanel {
 		add(jl_opBal);
 		
 		jtf_opbal = new JTextField();
-		jtf_opbal.setText("test text");
 		jtf_opbal.setHorizontalAlignment(SwingConstants.CENTER);
 		jtf_opbal.setForeground(SystemColor.controlDkShadow);
 		jtf_opbal.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -104,22 +112,14 @@ public class panel_addUser extends JPanel {
 		add(jl_pass);
 		
 		jpf_pass = new JPasswordField();
+		jpf_pass.setEnabled(false);
 		jpf_pass.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(105, 105, 105)));
 		jpf_pass.setBackground(new Color(16, 32, 39));
 		jpf_pass.setHorizontalAlignment(SwingConstants.CENTER);
 		jpf_pass.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		jpf_pass.setText("pass");
 		jpf_pass.setForeground(SystemColor.controlDkShadow);
 		jpf_pass.setBounds(730, 322, 120, 30);
 		add(jpf_pass);
-		
-		jcb_see = new JCheckBox("See password");
-		jcb_see.setBackground(new Color(16, 32, 39));
-		jcb_see.setFocusable(false);
-		jcb_see.setForeground(Color.WHITE);
-		jcb_see.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		jcb_see.setBounds(740, 355, 100, 23);
-		add(jcb_see);
 		
 		JLabel jl_tac = new JLabel("Account type:");
 		jl_tac.setForeground(Color.GRAY);
@@ -148,10 +148,129 @@ public class panel_addUser extends JPanel {
 				add(jrb_corriente);
 				group.add(jrb_corriente);
 		
+		validar = new MaterialButton();
+		validar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decide();
+			} //--== ESCUCHA DE VALIDA
+		});
+		validar.setText("Validate");
+		validar.setColorNormal(new Color(66,66,66));
+		validar.setColorHover(new Color(255,23,68));
+		validar.setColorPressed(new Color(255,23,68));
+		validar.setColorTextNormal(new Color(109,109,109));
+		validar.setColorTextHover(new Color(255,255,255));
+		validar.setColorTextPressed(new Color(255,255,255));
+		validar.setFocusable(false);
+		validar.setBounds(696, 512, 83, 35);
+		add(validar);
+		
+		cargar = new MaterialButton();
+		cargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}////--== ESCUCHA DE VALIDA
+		});
+		cargar.setText("Load up");
+		cargar.setColorNormal(new Color(66,66,66));
+		cargar.setColorHover(new Color(255,23,68));
+		cargar.setColorPressed(new Color(255,23,68));
+		cargar.setColorTextNormal(new Color(109,109,109));
+		cargar.setColorTextHover(new Color(255,255,255));
+		cargar.setColorTextPressed(new Color(255,255,255));
+		cargar.setFocusable(false);
+		cargar.setBounds(790, 512, 83, 35);
+		add(cargar);
+		
 		JLabel label_fondo = new JLabel(" ");
 		label_fondo.setFont(new Font("Century Gothic", Font.PLAIN, 30));
 		label_fondo.setIcon(new ImageIcon(Panel_login.class.getResource("/image/p_log_in.png")));
 		label_fondo.setBounds(0, 0, 1035, 877);
 		add(label_fondo);
+		
+		
 	}
+	
+	
+	public void decide() {
+		boolean bandera = generaCuenta();		//---=== METODO ENCARGADO DE GENERAR LA CUENTA ASOCIADA AL CLIENTE O USUARIO, ADEMAS DETERMINA EL BALANCE CORRECTO Y EL TIPO DE CUENTA ASOCIADO
+
+		if(jtf_name.getText().trim().isEmpty() || jtf_lname.getText().trim().isEmpty() || jtf_opbal.getText().trim().isEmpty() || bandera == false) {
+
+			main.jp_notify.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255,23,68)));
+			main.jl_text.setText("Error, the fields are empty");
+			Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+			band = true;
+			
+		}else {
+			if(band) {
+				Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
+				band=false;
+			}
+			jtf_numac.setText(""+cuenta.getNum_cuenta());
+			jpf_pass.setText(""+cuenta.getPass());
+			validar.setColorNormal(new Color(0,112,26));
+			validar.setColorHover(new Color(0,112,26));
+			validar.setColorPressed(new Color(0,112,26));
+			validar.setEnabled(false);	
+		}// END ELSE
+		
+	}//---=== FIN DEL METODO DECIDE
+	
+	
+	
+	
+	public void me( paneles.panel_addUser me) {
+		this.me=me;
+	}//---=== END
+	
+	
+	
+	public boolean generaCuenta() {
+		try {
+			
+		nombre = jtf_name.getText();			//--== EXTRAE EL TEXTO DE LOS TEXTFIEL
+		apellido = jtf_lname.getText();			//--== EXTRAE EL TEXTO DE LOS TEXTFIEL
+		
+		
+		//---=== VERIFICA EL BALANCE INICIAL SEA CORRECTO ===---//
+		if(Integer.parseInt(jtf_opbal.getText()) >= 30) {
+			balance = Integer.parseInt(jtf_opbal.getText());
+		}else {
+			balance = Integer.parseInt(jtf_opbal.getText());
+			main.jp_notify.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255,23,68)));
+			main.jl_text.setText("Error, the balance must be greater than or equal to the indicated amount (Min. 30).");
+			Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+			band = true; return false;
+		}
+		//---=== VERIFICA EL BALANCE INICIAL SEA CORRECTO ===---//
+		
+		//---=== VERIFICA EL TIPO DE CUENTA ===---//
+		if(jrb_ahorro.isSelected()) {
+			tipo_cuenta = "Ahorro";
+			jrb_corriente.setEnabled(false);
+		}else {
+			if(jrb_corriente.isSelected()) {
+				tipo_cuenta = "Corriente";
+				jrb_ahorro.setEnabled(false);
+			}else {
+				
+				tipo_cuenta = "";
+				main.jp_notify.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255,23,68)));
+				main.jl_text.setText("Error, account type unspecified.");
+				Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+				band = true; return false;
+			}
+		}
+		//---=== VERIFICA EL TIPO DE CUENTA ===---//
+
+		}catch(Exception e) {
+			main.jp_notify.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255,23,68)));
+			main.jl_text.setText("Error, in the system");
+			Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+			band = true;
+			return false;
+		}
+		return true;
+	}//---=== END GENERACUENTA
 }

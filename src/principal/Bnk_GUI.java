@@ -11,7 +11,7 @@ import Resources.MaterialButton;
 public class Bnk_GUI extends JFrame{
 
 	public JPanel contentPane,jpnorte,dashboard,jp_notify,principal,jp_registro;
-	public JButton search,menu,user,exit_min,log;
+	public JButton search,menu,user,exit_min,log,home;
 	public JLabel up_dashboard,title,jl_login,up_registro,jl_exit,jl_text;
 	public boolean bandera = true;
 	public MaterialButton exit;
@@ -23,6 +23,7 @@ public class Bnk_GUI extends JFrame{
 	
 	public static void main(String[] args) {
 			Bnk_GUI frame = new Bnk_GUI();
+			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 			frame.addME(frame);
 	}		//---=== END MAIN
@@ -182,13 +183,29 @@ public class Bnk_GUI extends JFrame{
 				});
 				log.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				log.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/login.png")));
-				log.setToolTipText("Exit");
+				log.setToolTipText("Login");
 				log.setIconTextGap(-20);
 				log.setFocusable(false);
 				log.setContentAreaFilled(false);
 				log.setBorderPainted(false);
-				log.setBounds(3, 11, 40, 40);
+				log.setBounds(3, 55, 40, 40);
 				dashboard.add(log);
+				
+				home = new JButton("");
+				home.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						new paneles.Cambia_paneles(principal, new paneles.Panel_principal()); //---=== BASICAMENTE ES EL MISMO PANEL QUE APARECE AL PRINCIPIO
+					}
+				});
+				home.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				home.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/hom.png")));
+				home.setToolTipText("Home");
+				home.setIconTextGap(-20);
+				home.setFocusable(false);
+				home.setContentAreaFilled(false);
+				home.setBorderPainted(false);
+				home.setBounds(3, 11, 40, 40);
+				dashboard.add(home);
 				
 				
 				up_dashboard = new JLabel(" ");			//--== ESTO ES MAS QUE LA SIMPLE ESQUINA QUE ESTA LOCALIZADA EN EL DASHBOARD EN LA PARTE SUPERIOR
@@ -225,13 +242,13 @@ public class Bnk_GUI extends JFrame{
 		
 		JLabel arrow_left = new JLabel(" ");
 		arrow_left.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/senal.png")));
-		arrow_left.setBounds(0, 10, 35, 35);
+		arrow_left.setBounds(0, 57, 35, 35);
 		principal.add(arrow_left);
 		
 		JLabel text_sign = new JLabel("Sign in");
 		text_sign.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		text_sign.setForeground(new Color(105, 105, 105));
-		text_sign.setBounds(38, 20, 51, 21);
+		text_sign.setBounds(38, 67, 51, 21);
 		principal.add(text_sign);
 		
 		JLabel label = new JLabel("");
@@ -264,9 +281,10 @@ public class Bnk_GUI extends JFrame{
 				jl_login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				jl_login.setBounds(5, 60, 135, 20);
 				jl_login.setEnabled(false);
+				jl_login.setVisible(false);
 				jp_registro.add(jl_login);
 				
-				jl_exit = new JLabel("   Exit");
+				jl_exit = new JLabel("   Sign out");
 				jl_exit.addMouseListener(new MouseAdapter() {
 					public void mouseExited(MouseEvent a) {						//---=== DEVUELVE EL LABEL A SU ESTADO ORIGINAL ANTES DEL HOVER
 						jl_exit.setForeground(new Color(0,0,0));
@@ -276,6 +294,7 @@ public class Bnk_GUI extends JFrame{
 						dispose();
 			
 						Bnk_GUI frame = new Bnk_GUI();
+						frame.setLocationRelativeTo(null);
 						frame.setVisible(true);
 						frame.addME(frame);
 						new paneles.Cambia_paneles(frame.principal, new paneles.Panel_User_of_bank(frame));

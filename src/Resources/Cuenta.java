@@ -8,19 +8,23 @@ public class Cuenta {
 	private String Nombre, Apellido, tipo_cuenta,pass,NumCuenta;
 	private double saldo;
 	private int num_cuenta;
-public Cuenta(String nombre,String apellido,String tipo_cuenta,String pass, double saldo) {
 	
-}//
+public Cuenta(String nombre,String apellido,String tipo_cuenta,String pass, double saldo) {
+	this.Nombre = nombre;
+	this.Apellido = apellido;
+	this.tipo_cuenta = tipo_cuenta;
+	this.saldo = saldo;
+}//---=== ESTE CONSTRUCTOR EXISTE POR EL HECHO DE CARGAR TODO EN UN SOLO ENVIO
 	
 	public Cuenta() {
 	// TODO Auto-generated constructor stub
 }
 
 	protected void setNombre(String nombre) {
-		Nombre = nombre;
+		this.Nombre = nombre;
 	}
 	protected void setApellido(String apellido) {
-		Apellido = apellido;
+		this.Apellido = apellido;
 	}
 	protected void setTipo_cuenta(String tipo_cuenta) {
 		this.tipo_cuenta = tipo_cuenta;
@@ -42,8 +46,8 @@ public Cuenta(String nombre,String apellido,String tipo_cuenta,String pass, doub
 			Pattern regex = Pattern.compile(Pattern.quote(aguja));
 			Matcher match = regex.matcher(temp);
 					if (match.find()) {
-						System.out.println("Encontrado, la contraseña es: "+pass);
-					num_cuenta= Integer.parseInt(match.replaceAll("1000"));}
+						//System.out.println("Encontrado, la contraseña es: "+pass);
+					num_cuenta= Integer.parseInt(match.replaceAll("1000"));System.out.println("El numero de cuenta para es: "+num_cuenta);System.out.println("Contrasena: "+pass);}
 					else {
 					//System.out.println("Error en la busqueda y generacion de Numero de cuenta bancaria...");
 					RSNotifyShadowFade b = new RSNotifyShadowFade("ERROR!","Error, la busqueda y generacion de Numero de cuenta bancaria a sido erronea, llame  al administrador...",
@@ -65,26 +69,26 @@ public Cuenta(String nombre,String apellido,String tipo_cuenta,String pass, doub
 	}
 	/**/
 	
-	protected String getNombre() {
+	public String getNombre() {
 		return Nombre;
 	}
-	protected String getApellido() {
+	public String getApellido() {
 		return Apellido;
 	}
-	protected String getTipo_cuenta() {
+	public String getTipo_cuenta() {
 		return tipo_cuenta;
 	}
-	protected String getPass() {
+	public String getPass() {
 		return pass;
 	}
-	protected double getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
-	protected int getNum_cuenta() {
+	public int getNum_cuenta() {
 		Num_cuenta();
 		return num_cuenta;
 	}
-	protected String getNumCuenAsos() {
+	public String getNumCuenAsos() {
 		return NumCuenta;
 	}
 	/**/

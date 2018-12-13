@@ -9,6 +9,7 @@ import principal.Bnk_GUI;
 import java.awt.event.*;
 
 public class Panel_User_of_bank extends JPanel {
+	
 	private JPasswordField jpf_pass;
 	public boolean band;
 	MaterialButton jbnum_1,jbnum_2,jbnum_3,jbnum_4,jbnum_5,jbnum_6,jbnum_7,jbnum_8,jbnum_9,jbnum_0,jbaccept;
@@ -16,10 +17,13 @@ public class Panel_User_of_bank extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
 	public Panel_User_of_bank(Bnk_GUI main) {
 		this.setBounds(0, 0, 1035, 582);
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
+		main.home.setVisible(true);
+		main.log.setEnabled(false);
 		
 		JLabel lblBnk = new JLabel("BNK ");
 		lblBnk.setForeground(new Color(128, 128, 128));
@@ -33,7 +37,7 @@ public class Panel_User_of_bank extends JPanel {
 		lblBnk2.setBounds(473, 76, 340, 40);
 		add(lblBnk2);
 		
-		jpf_pass = new JPasswordField();
+		jpf_pass = new JPasswordField(1);
 		jpf_pass.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent a) {
@@ -42,6 +46,8 @@ public class Panel_User_of_bank extends JPanel {
 					String temp = String.valueOf(text);
 					//---=== DEBO EVALUAR LAS CLAVES DENTRO DE MI TXT
 					if(temp.equals("1234")) { //---=== EVALUA AL ADMINISTRADOR
+						main.home.setVisible(false);
+						main.home.setEnabled(false);
 						main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
 						main.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upRED.png")));
 						main.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
@@ -68,7 +74,7 @@ public class Panel_User_of_bank extends JPanel {
 			}
 		});
 		jpf_pass.setForeground(new Color(169, 169, 169));
-		jpf_pass.requestFocus();
+		jpf_pass.requestFocusInWindow(); 
 		jpf_pass.setHorizontalAlignment(SwingConstants.CENTER);
 		jpf_pass.setBackground(new Color(16,32,39));
 		jpf_pass.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(105, 105, 105)));
@@ -250,6 +256,9 @@ public class Panel_User_of_bank extends JPanel {
 				String temp = String.valueOf(text);
 				//---=== DEBO EVALUAR LAS CLAVES DENTRO DE MI TXT
 				if(temp.equals("1234")) { //---=== EVALUA AL ADMINISTRADOR
+					main.home.setVisible(false);
+					main.home.setEnabled(false);
+					main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
 					main.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upRED.png")));
 					main.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
 					main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
