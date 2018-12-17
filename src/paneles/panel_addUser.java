@@ -13,7 +13,7 @@ public class panel_addUser extends JPanel {
 	public JTextField jtf_lname,jtf_numac,jtf_name,jtf_opbal;
 	public JPasswordField jpf_pass;
 	public JRadioButton jrb_corriente,jrb_ahorro;
-	public MaterialButton validar,cargar;
+	public MaterialButton validar,cargar,cancel;
 	public paneles.panel_addUser me;
 	public Bnk_GUI main;
 	public boolean band;
@@ -152,6 +152,7 @@ public class panel_addUser extends JPanel {
 		validar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				decide();
+				cancel.setText("Back");
 			} //--== ESCUCHA DE VALIDA
 		});
 		validar.setText("Validate");
@@ -174,10 +175,15 @@ public class panel_addUser extends JPanel {
 				num_cuenta = jtf_numac.getText();
 				
 				band = AgregarCliente.addClient(nombre, apellido, num_cuenta, balance, temp, tipo_cuenta,main);
-			if (band) {
+				if(jtf_name.getText().trim().isEmpty() && jtf_lname.getText().trim().isEmpty() && jtf_opbal.getText().trim().isEmpty() && tipo_cuenta.isEmpty() && temp.isEmpty() && num_cuenta.isEmpty()) {
+					band = AgregarCliente.addClient("Anonimo", "Anonimo", "Anonimo", balance, "Anonimo", "Anonimo",main);
+				}
+				
+			if (!band) {
 				Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
 				band=false;
-			 }				
+			 }	
+			cargar.setEnabled(false);
 			}////--== ESCUCHA DE VALIDA
 		});
 		cargar.setText("Load up");
@@ -191,10 +197,11 @@ public class panel_addUser extends JPanel {
 		cargar.setBounds(790, 512, 83, 35);
 		add(cargar);
 		
-		MaterialButton cancel = new MaterialButton();
+		cancel = new MaterialButton();
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new paneles.Cambia_paneles(main.principal, new paneles.Panel_admin(main));
+				cancel.setText("Cancel");
 			}////--== ESCUCHA DE cancela
 		});
 		cancel.setText("Cancel");

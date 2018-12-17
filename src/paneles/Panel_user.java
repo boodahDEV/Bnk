@@ -17,10 +17,10 @@ public class Panel_user extends JPanel {
 		this.setBackground(new Color(16,32,39));
 		setLayout(null);
 		
-		JLabel login = new JLabel("Welcome "+nombre+" to the Bnk system");
+		JLabel login = new JLabel("Welcome '"+nombre+"' to the Bnk system");
 		login.setHorizontalAlignment(SwingConstants.CENTER);
 		login.setForeground(new Color(169, 169, 169));
-		login.setFont(new Font("Century Schoolbook L", Font.PLAIN, 40));
+		login.setFont(new Font("Century Gothic", Font.PLAIN, 40));
 		login.setBounds(125, 35, 800, 65);
 		add(login);
 		
@@ -34,13 +34,7 @@ public class Panel_user extends JPanel {
 		panel_dato.setBounds(10, 520, 496, 51);
 		add(panel_dato);
 		panel_dato.setLayout(null);
-//			
-//			JLabel jl_dato = new JLabel("Welcome "+nombre+" "+apellido);
-//			jl_dato.setForeground(new Color(105, 105, 105));
-//			jl_dato.setFont(new Font("Century Gothic", Font.ITALIC, 20));
-//			jl_dato.setBounds(5, 5, 481, 51);
-//			panel_dato.add(jl_dato);
-		
+
 		JPanel panel_statu = new JPanel();
 		panel_statu.setBackground(new Color(16,32,39));
 		panel_statu.setBounds(529, 520, 496, 51);

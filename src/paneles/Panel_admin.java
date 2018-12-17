@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Panel_admin extends JPanel {
-	private JTextField jtf_user;
-	private JPasswordField jpf_pass;
+
 
 	/**
 	 * Create the panel.
@@ -57,7 +56,8 @@ public class Panel_admin extends JPanel {
 				JButton rep = new JButton("");
 				rep.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent a) {
-		
+						//gui.remove(gui.principal);
+						new paneles.Cambia_paneles(gui.principal, new paneles.Panel_reportes(gui));
 					}
 				});
 				rep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

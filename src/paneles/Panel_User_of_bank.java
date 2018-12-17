@@ -76,6 +76,9 @@ public class Panel_User_of_bank extends JPanel {
 								main.home.setVisible(false);
 								main.home.setEnabled(false);
 								main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
+								main.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upPurpel.png")));
+								main.dashboard.setBackground(new Color(170,0,255));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+								main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(170,0,255)));
 								
 								//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
 								nombre = listaNueva[i].getNombre();
@@ -298,7 +301,7 @@ public class Panel_User_of_bank extends JPanel {
 															//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
 															main.log.setEnabled(false);
 															main.log.setVisible(false);
-															//---===   ===---///
+															//---=== 170,0,255  ===---///
 					if(band) {
 						Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
 						band=false;
@@ -312,6 +315,9 @@ public class Panel_User_of_bank extends JPanel {
 							main.home.setVisible(false);
 							main.home.setEnabled(false);
 							main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
+							main.up_dashboard.setIcon(new ImageIcon(Bnk_GUI.class.getResource("/image/upPurpel.png")));
+							main.dashboard.setBackground(new Color(170,0,255));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
+							main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(170,0,255)));
 							
 							//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
 							nombre = listaNueva[i].getNombre();
