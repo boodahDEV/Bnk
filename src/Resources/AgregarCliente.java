@@ -29,8 +29,6 @@ public class AgregarCliente implements Serializable{
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data_1.dll"));
 			out.writeObject(lista);
 			System.out.println("Los datos se han cargados con EXITO!");
-				main.jl_text.setText("Los datos se han cargados con EXITO!");
-				Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
 				out.close();
 			return true;
 		}catch(Exception e){System.out.println("ERROR2\n"+e); }
