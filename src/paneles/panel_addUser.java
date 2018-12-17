@@ -17,8 +17,8 @@ public class panel_addUser extends JPanel {
 	public paneles.panel_addUser me;
 	public Bnk_GUI main;
 	public boolean band;
-	String nombre,apellido,tipo_cuenta="",num_cuenta,pass;
-	int balance;
+	String nombre,apellido,tipo_cuenta,num_cuenta,pass;
+	double balance;
 	Cuenta cuenta = new Cuenta();
 	
 	/**
@@ -167,8 +167,17 @@ public class panel_addUser extends JPanel {
 		
 		cargar = new MaterialButton();
 		cargar.addActionListener(new ActionListener() {
+			boolean band;
 			public void actionPerformed(ActionEvent e) {
+				//--== ANTES DE MANDAR EL PASS Y LA CUENTA PRIMERO LA OBTENGO
+				String temp = String.valueOf(jpf_pass.getPassword());
+				num_cuenta = jtf_numac.getText();
 				
+				band = AgregarCliente.addClient(nombre, apellido, num_cuenta, balance, temp, tipo_cuenta,main);
+			if (band) {
+				Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
+				band=false;
+			 }				
 			}////--== ESCUCHA DE VALIDA
 		});
 		cargar.setText("Load up");
@@ -207,8 +216,10 @@ public class panel_addUser extends JPanel {
 				Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
 				band=false;
 			}
+			//---=== GENERA EL NUMERO DE CUENTA Y LA CONTRASENA ===---//
 			jtf_numac.setText(""+cuenta.getNum_cuenta());
 			jpf_pass.setText(""+cuenta.getPass());
+			//---===  ===---//
 			validar.setColorNormal(new Color(0,112,26));
 			validar.setColorHover(new Color(0,112,26));
 			validar.setColorPressed(new Color(0,112,26));
@@ -217,27 +228,24 @@ public class panel_addUser extends JPanel {
 		
 	}//---=== FIN DEL METODO DECIDE
 	
-	
-	
-	
 	public void me( paneles.panel_addUser me) {
 		this.me=me;
 	}//---=== END
-	
-	
-	
+		
 	public boolean generaCuenta() {
 		try {
 			
 		nombre = jtf_name.getText();			//--== EXTRAE EL TEXTO DE LOS TEXTFIEL
+		jtf_name.setEnabled(false);
 		apellido = jtf_lname.getText();			//--== EXTRAE EL TEXTO DE LOS TEXTFIEL
-		
+		jtf_lname.setEnabled(false);
 		
 		//---=== VERIFICA EL BALANCE INICIAL SEA CORRECTO ===---//
-		if(Integer.parseInt(jtf_opbal.getText()) >= 30) {
-			balance = Integer.parseInt(jtf_opbal.getText());
+		if(Integer.parseInt(jtf_opbal.getText()) >= 30.0) {
+			balance = Double.parseDouble(jtf_opbal.getText());
+			jtf_opbal.setEnabled(false);
 		}else {
-			balance = Integer.parseInt(jtf_opbal.getText());
+			balance = Double.parseDouble(jtf_opbal.getText());
 			main.jp_notify.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255,23,68)));
 			main.jl_text.setText("Error, the balance must be greater than or equal to the indicated amount (Min. 30).");
 			Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
@@ -273,4 +281,5 @@ public class panel_addUser extends JPanel {
 		}
 		return true;
 	}//---=== END GENERACUENTA
-}
+
+}//----==== FIN DE LA CLASE

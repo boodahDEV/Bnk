@@ -1,6 +1,5 @@
 package Resources;
 
-import java.io.*;
 import java.security.MessageDigest;
 import java.util.*;
 import javax.crypto.*;

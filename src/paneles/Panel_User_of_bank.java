@@ -4,15 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.MatteBorder;
 
-import Resources.MaterialButton;
+import Resources.*;
 import principal.Bnk_GUI;
 import java.awt.event.*;
+import java.util.*;
+import java.io.*;
+
 
 public class Panel_User_of_bank extends JPanel {
 	
 	private JPasswordField jpf_pass;
 	public boolean band;
 	MaterialButton jbnum_1,jbnum_2,jbnum_3,jbnum_4,jbnum_5,jbnum_6,jbnum_7,jbnum_8,jbnum_9,jbnum_0,jbaccept;
+	Data[]listaNueva = null;
+	String nombre,apellido,numc,pass,tipoC;double balance;
 	
 	/**
 	 * Create the panel.
@@ -53,25 +58,48 @@ public class Panel_User_of_bank extends JPanel {
 						main.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
 						main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
 						new paneles.Cambia_paneles(main.principal, new paneles.Panel_admin(main)); //---== AQUI EN SI SE LEVANTA EL PANEL DEL ADMINISTRADOR
-							//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
-							main.log.setEnabled(false);
-							main.log.setVisible(false);
-							//---===   ===---///
+						
+																//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
+																main.log.setEnabled(false);
+																main.log.setVisible(false);
+																//---===   ===---///
 						if(band) {
 							Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
 							band=false;
 						}
 							
 					}else {
-						//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO
-						jpf_pass.setText("");
-						main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
-						Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
-						band=true;
-
-						}		
-				}
-			}
+						carga(); //---=== CARGA LOS ELEMENTOS DEL FICHERO!
+						
+						for(int i = 0;i < listaNueva.length; i++){
+							if(temp.equals(listaNueva[i].getContrasena())){
+								new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main));//--== LEVANTA EL PANEL USER
+								
+								//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
+								nombre = listaNueva[i].getNombre();
+								apellido = listaNueva[i].getApellido();
+								pass = listaNueva[i].getContrasena();
+								numc = listaNueva[i].getNumCuenta();
+								tipoC = listaNueva[i].getTipoCuenta();
+								balance = listaNueva[i].getSaldoInicial();
+								//--==   ==--/
+	
+																//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
+																main.log.setEnabled(false);
+																main.log.setVisible(false);
+																//---===   ===---///
+								break;
+							}else{
+								//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO
+								jpf_pass.setText("");
+								main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
+								Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+								band=true;
+							}
+						}//end for
+					}//END ELSE		
+				}//END ENTER-PRESS
+			}//END KEY PRESSED
 		});
 		jpf_pass.setForeground(new Color(169, 169, 169));
 		jpf_pass.requestFocusInWindow(); 
@@ -263,23 +291,48 @@ public class Panel_User_of_bank extends JPanel {
 					main.dashboard.setBackground(new Color(255,23,68));							//---=== PARA CONSIDERAR ESTE CAMBIO DEBO DE ACOMODAR ICONOS
 					main.contentPane.setBorder(new MatteBorder(1,1,1,1, new Color(255,23,68)));
 					new paneles.Cambia_paneles(main.principal, new paneles.Panel_admin(main)); //---== AQUI EN SI SE LEVANTA EL PANEL DEL ADMINISTRADOR
-						//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
-						main.log.setEnabled(false);
-						main.log.setVisible(false);
-						//---===   ===---///
+					
+															//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
+															main.log.setEnabled(false);
+															main.log.setVisible(false);
+															//---===   ===---///
 					if(band) {
 						Animacion.Animacion.subir(10, -60, 2, 1, main.jp_notify);
 						band=false;
 					}
 						
 				}else {
-					//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO
-					jpf_pass.setText("");
-					main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
-					Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
-					band=true;
+					carga(); //---=== CARGA LOS ELEMENTOS DEL FICHERO!
+					
+					for(int i = 0;i < listaNueva.length; i++){
+						if(temp.equals(listaNueva[i].getContrasena())){
+							new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main));//--== LEVANTA EL PANEL USER
+							
+							//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
+							nombre = listaNueva[i].getNombre();
+							apellido = listaNueva[i].getApellido();
+							pass = listaNueva[i].getContrasena();
+							numc = listaNueva[i].getNumCuenta();
+							tipoC = listaNueva[i].getTipoCuenta();
+							balance = listaNueva[i].getSaldoInicial();
+							//--==   ==--/
 
-					}		
+															//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
+															main.log.setEnabled(false);
+															main.log.setVisible(false);
+															//---===   ===---///
+							break;
+						}else{
+							//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO
+							jpf_pass.setText("");
+							main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
+							Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
+							band=true;
+						}
+					}//end for
+				}//END ELSE	
+				
+				
 			}//---=== END ACTIONPERFORMED
 		});
 		jbaccept.setText("Accept");
@@ -305,4 +358,16 @@ public class Panel_User_of_bank extends JPanel {
 		String temp = String.valueOf(text);
 		jpf_pass.setText(""+temp+num);
 	}
-}
+	
+	public void carga() {
+		try{
+			ObjectInputStream leer_fichero = new ObjectInputStream(new FileInputStream("data_1.dll"));
+			ArrayList<Data[]> personal_Recuperado = (ArrayList<Data[]>) leer_fichero.readObject();
+			leer_fichero.close();
+			listaNueva = new Data[personal_Recuperado.size()];
+			personal_Recuperado.toArray(listaNueva);	
+		}catch(Exception e){
+			System.out.println("fichero no encontrado");
+		}	
+	}//---=== END CARGA
+}//---=== END MAIN

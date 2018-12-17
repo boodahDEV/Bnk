@@ -291,8 +291,9 @@ public class Bnk_GUI extends JFrame{
 					}
 					
 					public void mouseClicked(MouseEvent a) {
-						dispose();
-			
+						dispose(); 
+						System.gc();
+						me = null;
 						Bnk_GUI frame = new Bnk_GUI();
 						frame.setLocationRelativeTo(null);
 						frame.setVisible(true);
