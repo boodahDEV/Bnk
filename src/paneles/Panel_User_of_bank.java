@@ -73,7 +73,9 @@ public class Panel_User_of_bank extends JPanel {
 						
 						for(int i = 0;i < listaNueva.length; i++){
 							if(temp.equals(listaNueva[i].getContrasena())){
-								new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main));//--== LEVANTA EL PANEL USER
+								main.home.setVisible(false);
+								main.home.setEnabled(false);
+								main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
 								
 								//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
 								nombre = listaNueva[i].getNombre();
@@ -83,18 +85,19 @@ public class Panel_User_of_bank extends JPanel {
 								tipoC = listaNueva[i].getTipoCuenta();
 								balance = listaNueva[i].getSaldoInicial();
 								//--==   ==--/
-	
+								new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main, nombre, apellido, tipoC, balance, pass, numc));//--== LEVANTA EL PANEL USER
 																//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
 																main.log.setEnabled(false);
 																main.log.setVisible(false);
 																//---===   ===---///
 								break;
 							}else{
-								//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO
+								//---=== SI NO ES CORRECTA TOMAR EN CONCIDERACION LA BUSQUEDA DENTRO DE MI ARCHIVO			
 								jpf_pass.setText("");
 								main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
 								Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
 								band=true;
+								//---=== ESTE SIEMPRE SALDRA, POR CUESTION DE TIEMPO NO SOLUCIONARE ESTE BUGS ===---//
 							}
 						}//end for
 					}//END ELSE		
@@ -306,7 +309,9 @@ public class Panel_User_of_bank extends JPanel {
 					
 					for(int i = 0;i < listaNueva.length; i++){
 						if(temp.equals(listaNueva[i].getContrasena())){
-							new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main));//--== LEVANTA EL PANEL USER
+							main.home.setVisible(false);
+							main.home.setEnabled(false);
+							main.jl_exit.setEnabled(true); //---=== AL INICIAR SESION SE HABILITA LA OPCION DE CERRAR SESSION
 							
 							//--== SI ENCUENTRA LOS DATOS EN LA LISTA CAPTURO SUS CREDENCIALES ==--//
 							nombre = listaNueva[i].getNombre();
@@ -316,6 +321,7 @@ public class Panel_User_of_bank extends JPanel {
 							tipoC = listaNueva[i].getTipoCuenta();
 							balance = listaNueva[i].getSaldoInicial();
 							//--==   ==--/
+							new paneles.Cambia_paneles(main.principal, new paneles.Panel_user(main, nombre, apellido, tipoC, balance, pass, numc));//--== LEVANTA EL PANEL USER
 
 															//---=== ESTO LO HAGO PORQUE CONOSCO LA EXISTENCIA DE ESE BOTON
 															main.log.setEnabled(false);
@@ -328,6 +334,7 @@ public class Panel_User_of_bank extends JPanel {
 							main.jl_text.setText("ERROR, Los credenciales de inicio de sesion son incorrectos!.");
 							Animacion.Animacion.bajar(-60, 10, 2, 1, main.jp_notify);
 							band=true;
+							//---=== ESTE SIEMPRE SALDRA, POR CUESTION DE TIEMPO NO SOLUCIONARE ESTE BUGS ===---//
 						}
 					}//end for
 				}//END ELSE	
@@ -345,6 +352,23 @@ public class Panel_User_of_bank extends JPanel {
 		jbaccept.setFocusable(false);
 		jbaccept.setBounds(706, 435, 67, 35);
 		add(jbaccept);
+		
+		MaterialButton clear = new MaterialButton();
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jpf_pass.setText("");
+			}
+		});
+		clear.setText("Clear");
+		clear.setColorNormal(new Color(66,66,66));
+		clear.setColorHover(new Color(30,136,229));
+		clear.setColorPressed(new Color(33,150,243));
+		clear.setColorTextNormal(new Color(109,109,109));
+		clear.setColorTextHover(new Color(255,255,255));
+		clear.setColorTextPressed(new Color(255,255,255));
+		clear.setFocusable(false);
+		clear.setBounds(473, 435, 67, 35);
+		add(clear);
 		
 		JLabel label = new JLabel(" ");
 		label.setIcon(new ImageIcon(Panel_User_of_bank.class.getResource("/image/p_log_in.png")));

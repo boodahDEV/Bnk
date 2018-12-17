@@ -191,11 +191,29 @@ public class panel_addUser extends JPanel {
 		cargar.setBounds(790, 512, 83, 35);
 		add(cargar);
 		
+		MaterialButton cancel = new MaterialButton();
+		cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new paneles.Cambia_paneles(main.principal, new paneles.Panel_admin(main));
+			}////--== ESCUCHA DE cancela
+		});
+		cancel.setText("Cancel");
+		cancel.setColorNormal(new Color(66,66,66));
+		cancel.setColorHover(new Color(255,23,68));
+		cancel.setColorPressed(new Color(255,23,68));
+		cancel.setColorTextNormal(new Color(109,109,109));
+		cancel.setColorTextHover(new Color(255,255,255));
+		cancel.setColorTextPressed(new Color(255,255,255));
+		cancel.setFocusable(false);
+		cancel.setBounds(883, 512, 83, 35);
+		add(cancel);
+		
 		JLabel label_fondo = new JLabel(" ");
 		label_fondo.setFont(new Font("Century Gothic", Font.PLAIN, 30));
 		label_fondo.setIcon(new ImageIcon(Panel_login.class.getResource("/image/p_log_in.png")));
 		label_fondo.setBounds(0, 0, 1035, 877);
 		add(label_fondo);
+		
 		
 		
 	}
@@ -281,5 +299,4 @@ public class panel_addUser extends JPanel {
 		}
 		return true;
 	}//---=== END GENERACUENTA
-
 }//----==== FIN DE LA CLASE
