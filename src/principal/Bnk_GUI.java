@@ -69,6 +69,15 @@ public class Bnk_GUI extends JFrame{
 				jp_notify.setBounds(300, -60, 500, 50);		//---=== POSICION DEL PANEL DE NOTIFICACIONES normalmente debe estar en la altura (-60), al editar se pondra en 10.
 				jpnorte.add(jp_notify);
 				jp_notify.setLayout(null);
+				jp_notify.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						if(jp_notify.getY()==10) {
+							Animacion.subir(10, -60, 2, 1,jp_notify);
+						}
+					}
+
+				});
 						jl_text = new JLabel();				//---=== LABEL DE NOTIFICACIONES.
 						jl_text.setBounds(5, 5, 450, 45);
 						jl_text.setFont(new Font("Century Gothic", Font.BOLD, 11));
@@ -291,8 +300,9 @@ public class Bnk_GUI extends JFrame{
 					}
 					
 					public void mouseClicked(MouseEvent a) {
-						dispose();
-			
+						dispose(); 
+						System.gc();
+						me = null;
 						Bnk_GUI frame = new Bnk_GUI();
 						frame.setLocationRelativeTo(null);
 						frame.setVisible(true);

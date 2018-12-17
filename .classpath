@@ -13,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/NefAnimacion_v2.jar"/>
 	<classpathentry kind="lib" path="lib/RSNotify v1.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
